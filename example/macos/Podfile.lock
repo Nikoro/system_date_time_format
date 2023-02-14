@@ -1,0 +1,22 @@
+PODS:
+  - FlutterMacOS (1.0.0)
+  - system_date_time_format (0.0.1):
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - system_date_time_format (from `Flutter/ephemeral/.symlinks/plugins/system_date_time_format/macos`)
+
+EXTERNAL SOURCES:
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  system_date_time_format:
+    :path: Flutter/ephemeral/.symlinks/plugins/system_date_time_format/macos
+
+SPEC CHECKSUMS:
+  FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
+  system_date_time_format: 4f3982edee40a537cf15c817d1e939b9dbfa457d
+
+PODFILE CHECKSUM: 6eac6b3292e5142cfc23bdeb71848a40ec51c14c
+
+COCOAPODS: 1.11.3

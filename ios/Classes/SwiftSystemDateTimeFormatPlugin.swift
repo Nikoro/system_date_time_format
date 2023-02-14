@@ -23,25 +23,25 @@ public class SwiftSystemDateTimeFormatPlugin: NSObject, FlutterPlugin {
       }
   }
     
-    func getDateFormat() -> String {
+    private func getDateFormat() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         return dateFormatter.dateFormat
     }
     
-    func getMediumDateFormat() -> String {
+    private func getMediumDateFormat() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         return dateFormatter.dateFormat
     }
     
-    func getLongDateFormat() -> String {
+    private func getLongDateFormat() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         return dateFormatter.dateFormat
     }
     
-    func getTimeFormat() -> String {
+    private func getTimeFormat() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .short
         return dateFormatter.dateFormat
