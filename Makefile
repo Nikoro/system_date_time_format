@@ -6,6 +6,8 @@ help:
 
 test: ## Run all tests with coverage
 	@flutter test --no-pub --coverage --test-randomize-ordering-seed=random
+	@lcov --remove coverage/lcov.info "lib/src/system_date_time_format_platform_interface.dart" \
+	-o coverage/lcov.info
 
 test-report: test ## Run all tests with html coverage report
 	@echo "Generating html report..."

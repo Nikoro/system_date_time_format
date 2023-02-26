@@ -1,6 +1,5 @@
 part of 'widgets.dart';
 
-
 class RowItem extends StatelessWidget {
   const RowItem({required this.title, required this.value, super.key});
 

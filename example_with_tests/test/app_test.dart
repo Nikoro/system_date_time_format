@@ -11,14 +11,16 @@ void main() {
   setUp(() {
     final mockSDTFormat = MockSystemDateTimeFormat();
     when(() => mockSDTFormat.dateFormat).thenReturn(Stubs.dateFormat);
-    when(() => mockSDTFormat.mediumDateFormat).thenReturn(Stubs.mediumDateFormat);
+    when(() => mockSDTFormat.mediumDateFormat)
+        .thenReturn(Stubs.mediumDateFormat);
     when(() => mockSDTFormat.longDateFormat).thenReturn(Stubs.longDateFormat);
     when(() => mockSDTFormat.timeFormat).thenReturn(Stubs.timeFormat);
 
     getIt.registerSingleton<SystemDateTimeFormat>(mockSDTFormat);
   });
 
-  testWidgets('App displays 4 RowItems with Date & Time formats', (tester) async {
+  testWidgets('App displays 4 RowItems with Date & Time formats',
+      (tester) async {
     await tester.pumpWidget(const App());
 
     final rowItems = tester.widgetListByType<RowItem>();

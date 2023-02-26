@@ -19,7 +19,11 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: const Toolbar(),
-        body: Body(children: formats.entries.map((e) => RowItem(title: e.key, value: e.value)).toList()),
+        body: Body(
+          children: formats.entries
+              .map((e) => RowItem(title: e.key, value: e.value))
+              .toList(),
+        ),
       ),
     );
   }
