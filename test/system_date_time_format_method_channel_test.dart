@@ -15,23 +15,43 @@ void main() {
 
   group('MethodChannelSystemDateTimeFormat', () {
     [
-      [platform.getDateFormat, Stubs.dateFormat, Fallbacks.dateFormat],
-      [platform.getMediumDateFormat, Stubs.mediumDateFormat, Fallbacks.mediumDateFormat],
-      [platform.getLongDateFormat, Stubs.longDateFormat, Fallbacks.longDateFormat],
-      [platform.getTimeFormat, Stubs.timeFormat, Fallbacks.timeFormat],
+      [
+        platform.getDateFormat,
+        Stubs.dateFormat,
+        Fallbacks.dateFormat,
+      ],
+      [
+        platform.getMediumDateFormat,
+        Stubs.mediumDateFormat,
+        Fallbacks.mediumDateFormat,
+      ],
+      [
+        platform.getLongDateFormat,
+        Stubs.longDateFormat,
+        Fallbacks.longDateFormat,
+      ],
+      [
+        platform.getTimeFormat,
+        Stubs.timeFormat,
+        Fallbacks.timeFormat,
+      ],
     ].forEach((input) {
-      final function = input.first as Future<String> Function({required String fallback});
+      final function =
+          input.first as Future<String> Function({required String fallback});
       final expectedValue = input.second as String;
       final expectedFallback = input.third as String;
 
-      test('${function.name} returns correct format: [$expectedValue]', () async {
+      test('${function.name} returns correct format: [$expectedValue]',
+          () async {
         channel.setMockMethodCallHandler((_) async => expectedValue);
 
         final result = await function(fallback: expectedFallback);
         expect(result, expectedValue);
       });
 
-      test('${function.name} returns fallback format: [$expectedFallback] on error', () async {
+      test(
+          '${function.name} returns fallback format: [$expectedFallback] on error',
+          () async {
         channel.setMockMethodCallHandler((_) async => null);
 
         final result = await function(fallback: expectedFallback);

@@ -8,7 +8,8 @@ abstract class SystemDateTimeFormatPlatformInterface extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static SystemDateTimeFormatPlatformInterface _instance = MethodChannelSystemDateTimeFormat();
+  static SystemDateTimeFormatPlatformInterface _instance =
+      MethodChannelSystemDateTimeFormat();
 
   /// The default instance of [SystemDateTimeFormatPlatformInterface] to use.
   ///

@@ -10,10 +10,14 @@ void main() {
     final platform = MockSystemDateTimeFormatPlatform();
     String anyFallback() => any(named: 'fallback');
 
-    when(() => platform.getDateFormat(fallback: anyFallback())).thenAnswer((_) async => Stubs.dateFormat);
-    when(() => platform.getMediumDateFormat(fallback: anyFallback())).thenAnswer((_) async => Stubs.mediumDateFormat);
-    when(() => platform.getLongDateFormat(fallback: anyFallback())).thenAnswer((_) async => Stubs.longDateFormat);
-    when(() => platform.getTimeFormat(fallback: anyFallback())).thenAnswer((_) async => Stubs.timeFormat);
+    when(() => platform.getDateFormat(fallback: anyFallback()))
+        .thenAnswer((_) async => Stubs.dateFormat);
+    when(() => platform.getMediumDateFormat(fallback: anyFallback()))
+        .thenAnswer((_) async => Stubs.mediumDateFormat);
+    when(() => platform.getLongDateFormat(fallback: anyFallback()))
+        .thenAnswer((_) async => Stubs.longDateFormat);
+    when(() => platform.getTimeFormat(fallback: anyFallback()))
+        .thenAnswer((_) async => Stubs.timeFormat);
 
     SystemDateTimeFormatPlatformInterface.instance = platform;
   });
@@ -31,12 +35,14 @@ void main() {
       expect(SystemDateTimeFormat().dateFormat, Stubs.dateFormat);
     });
 
-    test('mediumDateFormat returns correct format: [${Stubs.mediumDateFormat}]', () async {
+    test('mediumDateFormat returns correct format: [${Stubs.mediumDateFormat}]',
+        () async {
       await SystemDateTimeFormat().initialize();
       expect(SystemDateTimeFormat().mediumDateFormat, Stubs.mediumDateFormat);
     });
 
-    test('longDateFormat returns correct format: [${Stubs.longDateFormat}]', () async {
+    test('longDateFormat returns correct format: [${Stubs.longDateFormat}]',
+        () async {
       await SystemDateTimeFormat().initialize();
       expect(SystemDateTimeFormat().longDateFormat, Stubs.longDateFormat);
     });

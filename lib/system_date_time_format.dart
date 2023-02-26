@@ -21,42 +21,65 @@ class SystemDateTimeFormat {
     String timeFormatFallback = Fallbacks.timeFormat,
   }) async {
     final platform = SystemDateTimeFormatPlatformInterface.instance;
-    _dateFormat = await _try(platform.getDateFormat, fallback: dateFormatFallback);
-    _mediumDateFormat = await _try(platform.getMediumDateFormat, fallback: mediumDateFormatFallback);
-    _longDateFormat = await _try(platform.getLongDateFormat, fallback: longDateFormatFallback);
-    _timeFormat = await _try(platform.getTimeFormat, fallback: timeFormatFallback);
+    _dateFormat = await _try(
+      platform.getDateFormat,
+      fallback: dateFormatFallback,
+    );
+    _mediumDateFormat = await _try(
+      platform.getMediumDateFormat,
+      fallback: mediumDateFormatFallback,
+    );
+    _longDateFormat = await _try(
+      platform.getLongDateFormat,
+      fallback: longDateFormatFallback,
+    );
+    _timeFormat = await _try(
+      platform.getTimeFormat,
+      fallback: timeFormatFallback,
+    );
   }
 
   /// Returns a short version of date format.
   /// Throws [NotInitializedError] when plugin was not initialized
   String get dateFormat {
-    if (_dateFormat == null) throw NotInitializedError('dateFormat');
+    if (_dateFormat == null) {
+      throw NotInitializedError('dateFormat');
+    }
     return _dateFormat!;
   }
 
   /// Returns a medium version of date format.
   /// Throws [NotInitializedError] when plugin was not initialized
   String get mediumDateFormat {
-    if (_mediumDateFormat == null) throw NotInitializedError('mediumDateFormat');
+    if (_mediumDateFormat == null) {
+      throw NotInitializedError('mediumDateFormat');
+    }
     return _mediumDateFormat!;
   }
 
   /// Returns a long version of date format.
   /// Throws [NotInitializedError] when plugin was not initialized
   String get longDateFormat {
-    if (_longDateFormat == null) throw NotInitializedError('longDateFormat');
+    if (_longDateFormat == null) {
+      throw NotInitializedError('longDateFormat');
+    }
     return _longDateFormat!;
   }
 
   /// Returns time format.
   /// Throws [NotInitializedError] when plugin was not initialized
   String get timeFormat {
-    if (_timeFormat == null) throw NotInitializedError('timeFormat');
+    if (_timeFormat == null) {
+      throw NotInitializedError('timeFormat');
+    }
     return _timeFormat!;
   }
 
   /// Helper function for catching [PlatformException] and returning a fallback when that happen
-  Future<String> _try(Future<String> Function({required String fallback}) function, {required String fallback}) async {
+  Future<String> _try(
+    Future<String> Function({required String fallback}) function, {
+    required String fallback,
+  }) async {
     try {
       return await function(fallback: fallback);
     } on PlatformException {
