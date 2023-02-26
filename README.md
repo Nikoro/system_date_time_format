@@ -20,7 +20,13 @@
 </p>
 
 ---
+## Why system_date_time_format?
 
+Flutter does not support retrieving date and time format patterns based on the user's system
+settings out of the box. However, you can use the `system_date_time_format` plugin to get 
+date and time format patterns for consistent formatting in your Flutter app.
+
+### Examples
 | iOS (Region: United States 🇺🇸)                                                                                 | Result                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | ![ios_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/ios_setup.jpg)            | ![ios_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/ios_result.jpg)         |
