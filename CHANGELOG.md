@@ -1,3 +1,7 @@
+## 0.2.0
+
+Added macOS support
+
 ## 0.1.1
 
 - Formatted code
