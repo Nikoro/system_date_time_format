@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://pub.dev/packages/system_date_time_format">
-    <img alt="Pub Package" src="https://img.shields.io/pub/v/system_date_time_format.svg">
+    <img alt="Pub Package" src="https://tinyurl.com/2na5mvwt">
   </a>
   <a href="https://github.com/Nikoro/system_date_time_format/actions">
     <img alt="Build Status" src="https://github.com/Nikoro/system_date_time_format/actions/workflows/build.yaml/badge.svg">
@@ -15,8 +15,14 @@
     <img alt="Code Coverage" src="https://codecov.io/gh/Nikoro/system_date_time_format/branch/main/graph/badge.svg">
   </a>
   <a href="https://opensource.org/licenses/MIT">
-    <img alt="MIT License" src="https://img.shields.io/badge/License-MIT-purple.svg">
+    <img alt="MIT License" src="https://tinyurl.com/3uf9tzpy">
   </a>
+    <img alt="Android support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=android">
+    <img alt="iOS support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=ios">
+    <img alt="macOS support ✓" src="https://tinyurl.com/kka6pu4c">
+    <img alt="no Web support" src="https://img.shields.io/badge/Web%20%E2%9C%97-grey">
+    <img alt="no linux support" src="https://img.shields.io/badge/%E2%9C%97-grey?logo=linux">
+    <img alt="windows support soon..." src="https://img.shields.io/badge/soon...-grey?logo=windows">
 </p>
 
 ---
@@ -34,6 +40,10 @@ date and time format patterns for consistent formatting in your Flutter app.
 | Android (Region: United Kingdom 🇬🇧)                                                                            | Result                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | ![android_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/android_setup.jpg)    | ![android_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/android_result.jpg) |
+
+| macOS (Region: Poland 🇵🇱)                                                                                      | Result                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| ![macos_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/macos_setup.png)        | ![macos_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/macos_result.png)     |
 
 ## Usage
 
