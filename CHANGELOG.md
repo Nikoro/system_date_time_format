@@ -1,3 +1,7 @@
+## 0.3.0
+
+Added windows support
+
 ## 0.2.0
 
 Added macOS support
