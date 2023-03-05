@@ -20,9 +20,9 @@
     <img alt="Android support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=android">
     <img alt="iOS support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=ios">
     <img alt="macOS support ✓" src="https://tinyurl.com/kka6pu4c">
-    <img alt="no Web support" src="https://img.shields.io/badge/Web%20%E2%9C%97-grey">
+    <img alt="windows support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=windows">
     <img alt="no linux support" src="https://img.shields.io/badge/%E2%9C%97-grey?logo=linux">
-    <img alt="windows support soon..." src="https://img.shields.io/badge/soon...-grey?logo=windows">
+    <img alt="web support soon..." src="https://img.shields.io/badge/web%20soon...-grey">
 </p>
 
 ---
@@ -44,6 +44,10 @@ date and time format patterns for consistent formatting in your Flutter app.
 | macOS (Region: Poland 🇵🇱)                                                                                      | Result                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | ![macos_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/macos_setup.png)        | ![macos_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/macos_result.png)     |
+
+| windows (Region: United States 🇺🇸)                                                                             | Result                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| ![windows_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/windows_setup.jpg)    | ![windows_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/windows_result.jpg) |
 
 ## Usage
 
