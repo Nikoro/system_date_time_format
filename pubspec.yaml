@@ -29,3 +29,5 @@ flutter:
         pluginClass: SystemDateTimeFormatPlugin
       macos:
         pluginClass: SystemDateTimeFormatPlugin
+      windows:
+        pluginClass: SystemDateTimeFormatPluginCApi
