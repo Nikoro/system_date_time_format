@@ -1,3 +1,8 @@
+## 0.4.1
+
+- Fixed library names conflict
+- Improved documentation
+
 ## 0.4.0
 
 Added web support

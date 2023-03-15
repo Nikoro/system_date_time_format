@@ -4,7 +4,7 @@
 // ignore: avoid_web_libraries_in_flutter
 
 @JS()
-library system_date_time_format;
+library system_date_time_format_web;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:js/js.dart';
@@ -31,21 +31,25 @@ class SystemDateTimeFormatWeb extends SystemDateTimeFormatPlatformInterface {
     SystemDateTimeFormatPlatformInterface.instance = SystemDateTimeFormatWeb();
   }
 
+  /// Returns a short version of date format.
   @override
   Future<String> getDateFormat({required String fallback}) async {
     return _getDateFormat();
   }
 
-  @override
-  Future<String> getLongDateFormat({required String fallback}) async {
-    return _getLongDateFormat();
-  }
-
+  /// Returns a medium version of date format.
   @override
   Future<String> getMediumDateFormat({required String fallback}) async {
     return _getMediumDateFormat();
   }
 
+  /// Returns a long version of date format.
+  @override
+  Future<String> getLongDateFormat({required String fallback}) async {
+    return _getLongDateFormat();
+  }
+
+  /// Returns time format.
   @override
   Future<String> getTimeFormat({required String fallback}) async {
     return _getTimeFormat();
