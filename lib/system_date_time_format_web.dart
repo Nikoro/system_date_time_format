@@ -4,7 +4,7 @@
 // ignore: avoid_web_libraries_in_flutter
 
 @JS()
-library system_date_time_format;
+library system_date_time_format_web;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:js/js.dart';
