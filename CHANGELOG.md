@@ -1,3 +1,7 @@
+## 0.4.0
+
+Added web support
+
 ## 0.3.0
 
 Added windows support

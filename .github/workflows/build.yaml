@@ -18,7 +18,7 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
       - name: Check code formatting
-        run: flutter format . --set-exit-if-changed
+        run: dart format . --set-exit-if-changed
       - name: Unit tests
         run: make test
       - name: Upload coverage reports to Codecov

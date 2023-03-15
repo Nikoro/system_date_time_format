@@ -1,6 +1,6 @@
 name: system_date_time_format
 description: A plugin for getting date and time format patterns from device system settings.
-version: 0.3.0
+version: 0.4.0
 repository: https://github.com/Nikoro/system_date_time_format
 issue_tracker: https://github.com/Nikoro/system_date_time_format/issues
 
@@ -11,6 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  js: ^0.6.5
   plugin_platform_interface: ^2.1.4
 
 dev_dependencies:
@@ -31,3 +34,6 @@ flutter:
         pluginClass: SystemDateTimeFormatPlugin
       windows:
         pluginClass: SystemDateTimeFormatPluginCApi
+      web:
+        pluginClass: SystemDateTimeFormatWeb
+        fileName: system_date_time_format_web.dart
