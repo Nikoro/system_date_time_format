@@ -11,6 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  js: ^0.6.5
   plugin_platform_interface: ^2.1.4
 
 dev_dependencies:
@@ -31,3 +34,6 @@ flutter:
         pluginClass: SystemDateTimeFormatPlugin
       windows:
         pluginClass: SystemDateTimeFormatPluginCApi
+      web:
+        pluginClass: SystemDateTimeFormatWeb
+        fileName: system_date_time_format_web.dart
