@@ -102,7 +102,7 @@ class App extends StatelessWidget {
 
 In order to use this plugin on web app you need to add `system_date_time_format.js` script to your `index.html`:
 ```html
-<src="https://cdn.jsdelivr.net/gh/Nikoro/system_date_time_format@main/web/system_date_time_format.js"></script>
+<src="https://cdn.jsdelivr.net/gh/Nikoro/system_date_time_format@main/web/system_date_time_format.min.js"></script>
 ```
 index.html
 
@@ -111,7 +111,7 @@ index.html
 <html>
 <head>
     <!--...-->
-    <src="https://cdn.jsdelivr.net/gh/Nikoro/system_date_time_format@main/web/system_date_time_format.js"></script>
+    <src="https://cdn.jsdelivr.net/gh/Nikoro/system_date_time_format@main/web/system_date_time_format.min.js"></script>
 </head>
 <body>
 <!--...-->
