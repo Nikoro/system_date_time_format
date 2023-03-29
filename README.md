@@ -21,8 +21,8 @@
     <img alt="iOS support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=ios">
     <img alt="macOS support ✓" src="https://tinyurl.com/kka6pu4c">
     <img alt="windows support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=windows">
+    <img alt="linux support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=linux">
     <img alt="web support ✓" src="https://img.shields.io/badge/web%20%E2%9C%93-grey">
-    <img alt="linux support soon..." src="https://img.shields.io/badge/%20soon...-grey?logo=linux">
 </p>
 
 ---
@@ -49,9 +49,13 @@ date and time format patterns for consistent formatting in your Flutter app.
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | ![windows_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/windows_setup.jpg)    | ![windows_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/windows_result.jpg) |
 
+| linux (Region: United States 🇺🇸)                                                                      | Result                                                                                                    |
+|---------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| ![linux_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/linux_setup.png) | ![linux_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/linux_result.png) |
+
 | web (Region: Poland 🇵🇱)                                                                                                                                                                                                         |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ![web_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/web_result.png)                                                                                                                          
+| ![web_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/web_result.png)
 
 ## Usage
 
@@ -102,7 +106,7 @@ class App extends StatelessWidget {
 
 In order to use this plugin on web app you need to add `system_date_time_format.js` script to your `index.html`:
 ```html
-<src="https://cdn.jsdelivr.net/gh/Nikoro/system_date_time_format@main/web/system_date_time_format.js"></script>
+<src="https://cdn.jsdelivr.net/gh/Nikoro/system_date_time_format@main/web/system_date_time_format.min.js"></script>
 ```
 index.html
 
@@ -111,7 +115,7 @@ index.html
 <html>
 <head>
     <!--...-->
-    <src="https://cdn.jsdelivr.net/gh/Nikoro/system_date_time_format@main/web/system_date_time_format.js"></script>
+    <src="https://cdn.jsdelivr.net/gh/Nikoro/system_date_time_format@main/web/system_date_time_format.min.js"></script>
 </head>
 <body>
 <!--...-->
