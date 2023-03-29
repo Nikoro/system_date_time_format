@@ -30,6 +30,8 @@ flutter:
         pluginClass: SystemDateTimeFormatPlugin
       ios:
         pluginClass: SystemDateTimeFormatPlugin
+      linux:
+        pluginClass: SystemDateTimeFormatPlugin
       macos:
         pluginClass: SystemDateTimeFormatPlugin
       windows:
