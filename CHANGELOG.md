@@ -1,3 +1,7 @@
+## 0.5.0
+
+Added linux support
+
 ## 0.4.1
 
 - Fixed library names conflict
