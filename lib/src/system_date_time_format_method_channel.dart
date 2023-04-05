@@ -11,42 +11,30 @@ class MethodChannelSystemDateTimeFormat
   final methodChannel = const MethodChannel('system_date_time_format');
 
   /// Invokes "getDateFormat" method on system_date_time_format [methodChannel]
-  /// returning dateFormat when success
-  /// otherwise a fallback value passed as an argument to this function
+  /// returning dateFormat
   @override
-  Future<String> getDateFormat({required String fallback}) async {
-    final dateFormat =
-        await methodChannel.invokeMethod<String>('getDateFormat');
-    return dateFormat ?? fallback;
+  Future<String?> getDateFormat() {
+    return methodChannel.invokeMethod<String>('getDateFormat');
   }
 
   /// Invokes "getMediumDateFormat" method on system_date_time_format [methodChannel]
-  /// returning mediumDateFormat when success
-  /// otherwise a fallback value passed as an argument to this function
+  /// returning mediumDateFormat
   @override
-  Future<String> getMediumDateFormat({required String fallback}) async {
-    final mediumDateFormat =
-        await methodChannel.invokeMethod<String>('getMediumDateFormat');
-    return mediumDateFormat ?? fallback;
+  Future<String?> getMediumDateFormat() {
+    return methodChannel.invokeMethod<String>('getMediumDateFormat');
   }
 
   /// Invokes "getLongDateFormat" method on system_date_time_format [methodChannel]
-  /// returning longDateFormat when success
-  /// otherwise a fallback value passed as an argument to this function
+  /// returning longDateFormat
   @override
-  Future<String> getLongDateFormat({required String fallback}) async {
-    final longDateFormat =
-        await methodChannel.invokeMethod<String>('getLongDateFormat');
-    return longDateFormat ?? fallback;
+  Future<String?> getLongDateFormat() {
+    return methodChannel.invokeMethod<String>('getLongDateFormat');
   }
 
   /// Invokes "getTimeFormat" method on system_date_time_format [methodChannel]
-  /// returning timeFormat when success
-  /// otherwise a fallback value passed as an argument to this function
+  /// returning timeFormat
   @override
-  Future<String> getTimeFormat({required String fallback}) async {
-    final timeFormat =
-        await methodChannel.invokeMethod<String>('getTimeFormat');
-    return timeFormat ?? fallback;
+  Future<String?> getTimeFormat() {
+    return methodChannel.invokeMethod<String>('getTimeFormat');
   }
 }

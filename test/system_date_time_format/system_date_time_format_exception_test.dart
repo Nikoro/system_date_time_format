@@ -11,17 +11,13 @@ void main() {
   setUp(() {
     final platform = MockSystemDateTimeFormatPlatform();
 
-    String anyFallback() => any(named: 'fallback');
     asyncPlatformException(_) async => throw PlatformException(code: '');
 
-    when(() => platform.getDateFormat(fallback: anyFallback()))
+    when(() => platform.getDateFormat()).thenAnswer(asyncPlatformException);
+    when(() => platform.getMediumDateFormat())
         .thenAnswer(asyncPlatformException);
-    when(() => platform.getMediumDateFormat(fallback: anyFallback()))
-        .thenAnswer(asyncPlatformException);
-    when(() => platform.getLongDateFormat(fallback: anyFallback()))
-        .thenAnswer(asyncPlatformException);
-    when(() => platform.getTimeFormat(fallback: anyFallback()))
-        .thenAnswer(asyncPlatformException);
+    when(() => platform.getLongDateFormat()).thenAnswer(asyncPlatformException);
+    when(() => platform.getTimeFormat()).thenAnswer(asyncPlatformException);
 
     SystemDateTimeFormatPlatformInterface.instance = platform;
   });

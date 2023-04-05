@@ -8,15 +8,14 @@ import '../_tools/tools.dart';
 void main() {
   setUpAll(() {
     final platform = MockSystemDateTimeFormatPlatform();
-    String anyFallback() => any(named: 'fallback');
 
-    when(() => platform.getDateFormat(fallback: anyFallback()))
+    when(() => platform.getDateFormat())
         .thenAnswer((_) async => Stubs.dateFormat);
-    when(() => platform.getMediumDateFormat(fallback: anyFallback()))
+    when(() => platform.getMediumDateFormat())
         .thenAnswer((_) async => Stubs.mediumDateFormat);
-    when(() => platform.getLongDateFormat(fallback: anyFallback()))
+    when(() => platform.getLongDateFormat())
         .thenAnswer((_) async => Stubs.longDateFormat);
-    when(() => platform.getTimeFormat(fallback: anyFallback()))
+    when(() => platform.getTimeFormat())
         .thenAnswer((_) async => Stubs.timeFormat);
 
     SystemDateTimeFormatPlatformInterface.instance = platform;
@@ -28,6 +27,22 @@ void main() {
       final s2 = SystemDateTimeFormat();
       expect(identical(s1, s2), true);
       expect(s1 == s2, true);
+    });
+
+    [
+      [SystemDateTimeFormat().getDateFormat, Stubs.dateFormat],
+      [SystemDateTimeFormat().getMediumDateFormat, Stubs.mediumDateFormat],
+      [SystemDateTimeFormat().getLongDateFormat, Stubs.longDateFormat],
+      [SystemDateTimeFormat().getTimeFormat, Stubs.timeFormat],
+    ].forEach((input) {
+      final function = input.first as Future<String?> Function();
+      final expectedValue = input.second as String;
+
+      test('${function.name}() returns correct format: [$expectedValue]',
+          () async {
+        final result = await function();
+        expect(result, expectedValue);
+      });
     });
 
     test('dateFormat returns correct format: [${Stubs.dateFormat}]', () async {
