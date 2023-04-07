@@ -12,28 +12,28 @@ class SystemDateTimeFormat {
   factory SystemDateTimeFormat() => _instance;
   static final SystemDateTimeFormat _instance = SystemDateTimeFormat._();
 
-  /// Returns a short version of date format pattern.
+  /// Returns a short version of date pattern.
   /// May throw [PlatformException] from [MethodChannel].
-  Future<String?> getDateFormat() {
-    return SystemDateTimeFormatPlatformInterface.instance.getDateFormat();
+  Future<String?> getDatePattern() {
+    return SystemDateTimeFormatPlatformInterface.instance.getDatePattern();
   }
 
-  /// Returns a medium version of date format pattern.
+  /// Returns a medium version of date pattern.
   /// May throw [PlatformException] from [MethodChannel].
-  Future<String?> getMediumDateFormat() {
-    return SystemDateTimeFormatPlatformInterface.instance.getMediumDateFormat();
+  Future<String?> getMediumDatePattern() {
+    return SystemDateTimeFormatPlatformInterface.instance.getMediumDatePattern();
   }
 
-  /// Returns a long version of date format pattern.
+  /// Returns a long version of date pattern.
   /// May throw [PlatformException] from [MethodChannel].
-  Future<String?> getLongDateFormat() {
-    return SystemDateTimeFormatPlatformInterface.instance.getLongDateFormat();
+  Future<String?> getLongDatePattern() {
+    return SystemDateTimeFormatPlatformInterface.instance.getLongDatePattern();
   }
 
-  /// Returns time format pattern.
+  /// Returns time pattern.
   /// May throw [PlatformException] from [MethodChannel].
-  Future<String?> getTimeFormat() {
-    return SystemDateTimeFormatPlatformInterface.instance.getTimeFormat();
+  Future<String?> getTimePattern() {
+    return SystemDateTimeFormatPlatformInterface.instance.getTimePattern();
   }
 
   /// Initializes the plugin.
@@ -47,26 +47,26 @@ class SystemDateTimeFormat {
   }) async {
     final platform = SystemDateTimeFormatPlatformInterface.instance;
     _dateFormat = await _try(
-      platform.getDateFormat,
+      platform.getDatePattern,
       fallback: dateFormatFallback,
     );
     _mediumDateFormat = await _try(
-      platform.getMediumDateFormat,
+      platform.getMediumDatePattern,
       fallback: mediumDateFormatFallback,
     );
     _longDateFormat = await _try(
-      platform.getLongDateFormat,
+      platform.getLongDatePattern,
       fallback: longDateFormatFallback,
     );
     _timeFormat = await _try(
-      platform.getTimeFormat,
+      platform.getTimePattern,
       fallback: timeFormatFallback,
     );
   }
 
   /// Returns a short version of date format.
   /// Throws [NotInitializedError] when plugin was not initialized
-  @Deprecated("Use getDateFormat() instead.")
+  @Deprecated("Use getDatePattern() instead.")
   String get dateFormat {
     if (_dateFormat == null) {
       throw NotInitializedError('dateFormat');
@@ -76,7 +76,7 @@ class SystemDateTimeFormat {
 
   /// Returns a medium version of date format.
   /// Throws [NotInitializedError] when plugin was not initialized
-  @Deprecated("Use getMediumDateFormat() instead.")
+  @Deprecated("Use getMediumDatePattern() instead.")
   String get mediumDateFormat {
     if (_mediumDateFormat == null) {
       throw NotInitializedError('mediumDateFormat');
@@ -86,7 +86,7 @@ class SystemDateTimeFormat {
 
   /// Returns a long version of date format.
   /// Throws [NotInitializedError] when plugin was not initialized
-  @Deprecated("Use getLongDateFormat() instead.")
+  @Deprecated("Use getLongDatePattern() instead.")
   String get longDateFormat {
     if (_longDateFormat == null) {
       throw NotInitializedError('longDateFormat');
@@ -96,7 +96,7 @@ class SystemDateTimeFormat {
 
   /// Returns time format.
   /// Throws [NotInitializedError] when plugin was not initialized
-  @Deprecated("Use getTimeFormat() instead.")
+  @Deprecated("Use getTimePattern() instead.")
   String get timeFormat {
     if (_timeFormat == null) {
       throw NotInitializedError('timeFormat');

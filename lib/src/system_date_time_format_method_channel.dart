@@ -13,28 +13,28 @@ class MethodChannelSystemDateTimeFormat
   /// Invokes "getDateFormat" method on system_date_time_format [methodChannel]
   /// returning dateFormat
   @override
-  Future<String?> getDateFormat() {
+  Future<String?> getDatePattern() {
     return methodChannel.invokeMethod<String>('getDateFormat');
   }
 
   /// Invokes "getMediumDateFormat" method on system_date_time_format [methodChannel]
   /// returning mediumDateFormat
   @override
-  Future<String?> getMediumDateFormat() {
+  Future<String?> getMediumDatePattern() {
     return methodChannel.invokeMethod<String>('getMediumDateFormat');
   }
 
   /// Invokes "getLongDateFormat" method on system_date_time_format [methodChannel]
   /// returning longDateFormat
   @override
-  Future<String?> getLongDateFormat() {
+  Future<String?> getLongDatePattern() {
     return methodChannel.invokeMethod<String>('getLongDateFormat');
   }
 
   /// Invokes "getTimeFormat" method on system_date_time_format [methodChannel]
   /// returning timeFormat
   @override
-  Future<String?> getTimeFormat() {
+  Future<String?> getTimePattern() {
     return methodChannel.invokeMethod<String>('getTimeFormat');
   }
 }

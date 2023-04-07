@@ -24,15 +24,15 @@ abstract class SystemDateTimeFormatPlatformInterface extends PlatformInterface {
     _instance = instance;
   }
 
-  /// Method signature for returning short version of date format
-  Future<String?> getDateFormat();
+  /// Method signature for returning short version of date format pattern
+  Future<String?> getDatePattern();
 
-  /// Method signature for returning medium version of date format
-  Future<String?> getMediumDateFormat();
+  /// Method signature for returning medium version of date format pattern
+  Future<String?> getMediumDatePattern();
 
-  /// Method signature for returning long version of date format
-  Future<String?> getLongDateFormat();
+  /// Method signature for returning long version of date format pattern
+  Future<String?> getLongDatePattern();
 
-  /// Method signature for returning time format
-  Future<String?> getTimeFormat();
+  /// Method signature for returning time format pattern
+  Future<String?> getTimePattern();
 }

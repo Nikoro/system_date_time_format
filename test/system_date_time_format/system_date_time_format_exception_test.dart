@@ -13,11 +13,11 @@ void main() {
 
     asyncPlatformException(_) async => throw PlatformException(code: '');
 
-    when(() => platform.getDateFormat()).thenAnswer(asyncPlatformException);
-    when(() => platform.getMediumDateFormat())
+    when(() => platform.getDatePattern()).thenAnswer(asyncPlatformException);
+    when(() => platform.getMediumDatePattern())
         .thenAnswer(asyncPlatformException);
-    when(() => platform.getLongDateFormat()).thenAnswer(asyncPlatformException);
-    when(() => platform.getTimeFormat()).thenAnswer(asyncPlatformException);
+    when(() => platform.getLongDatePattern()).thenAnswer(asyncPlatformException);
+    when(() => platform.getTimePattern()).thenAnswer(asyncPlatformException);
 
     SystemDateTimeFormatPlatformInterface.instance = platform;
   });

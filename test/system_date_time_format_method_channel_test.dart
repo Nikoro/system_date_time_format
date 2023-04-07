@@ -14,10 +14,10 @@ void main() {
 
   group('MethodChannelSystemDateTimeFormat', () {
     [
-      [platform.getDateFormat, Stubs.dateFormat],
-      [platform.getMediumDateFormat, Stubs.mediumDateFormat],
-      [platform.getLongDateFormat, Stubs.longDateFormat],
-      [platform.getTimeFormat, Stubs.timeFormat],
+      [platform.getDatePattern, Stubs.datePattern],
+      [platform.getMediumDatePattern, Stubs.mediumDatePattern],
+      [platform.getLongDatePattern, Stubs.longDatePattern],
+      [platform.getTimePattern, Stubs.timePattern],
     ].forEach((input) {
       final function = input.first as Future<String?> Function();
       final expectedValue = input.second as String;

@@ -28,25 +28,25 @@ class SystemDateTimeFormatWeb extends SystemDateTimeFormatPlatformInterface {
 
   /// Returns a short version of date format.
   @override
-  Future<String> getDateFormat() async {
+  Future<String> getDatePattern() async {
     return _getDateFormat();
   }
 
   /// Returns a medium version of date format.
   @override
-  Future<String> getMediumDateFormat() async {
+  Future<String> getMediumDatePattern() async {
     return _getMediumDateFormat();
   }
 
   /// Returns a long version of date format.
   @override
-  Future<String> getLongDateFormat() async {
+  Future<String> getLongDatePattern() async {
     return _getLongDateFormat();
   }
 
   /// Returns time format.
   @override
-  Future<String> getTimeFormat() async {
+  Future<String> getTimePattern() async {
     return _getTimeFormat();
   }
 }

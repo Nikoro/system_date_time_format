@@ -9,14 +9,14 @@ void main() {
   setUpAll(() {
     final platform = MockSystemDateTimeFormatPlatform();
 
-    when(() => platform.getDateFormat())
-        .thenAnswer((_) async => Stubs.dateFormat);
-    when(() => platform.getMediumDateFormat())
-        .thenAnswer((_) async => Stubs.mediumDateFormat);
-    when(() => platform.getLongDateFormat())
-        .thenAnswer((_) async => Stubs.longDateFormat);
-    when(() => platform.getTimeFormat())
-        .thenAnswer((_) async => Stubs.timeFormat);
+    when(() => platform.getDatePattern())
+        .thenAnswer((_) async => Stubs.datePattern);
+    when(() => platform.getMediumDatePattern())
+        .thenAnswer((_) async => Stubs.mediumDatePattern);
+    when(() => platform.getLongDatePattern())
+        .thenAnswer((_) async => Stubs.longDatePattern);
+    when(() => platform.getTimePattern())
+        .thenAnswer((_) async => Stubs.timePattern);
 
     SystemDateTimeFormatPlatformInterface.instance = platform;
   });
@@ -30,41 +30,41 @@ void main() {
     });
 
     [
-      [SystemDateTimeFormat().getDateFormat, Stubs.dateFormat],
-      [SystemDateTimeFormat().getMediumDateFormat, Stubs.mediumDateFormat],
-      [SystemDateTimeFormat().getLongDateFormat, Stubs.longDateFormat],
-      [SystemDateTimeFormat().getTimeFormat, Stubs.timeFormat],
+      [SystemDateTimeFormat().getDatePattern, Stubs.datePattern],
+      [SystemDateTimeFormat().getMediumDatePattern, Stubs.mediumDatePattern],
+      [SystemDateTimeFormat().getLongDatePattern, Stubs.longDatePattern],
+      [SystemDateTimeFormat().getTimePattern, Stubs.timePattern],
     ].forEach((input) {
       final function = input.first as Future<String?> Function();
       final expectedValue = input.second as String;
 
-      test('${function.name}() returns correct format: [$expectedValue]',
+      test('${function.name}() returns correct pattern: [$expectedValue]',
           () async {
         final result = await function();
         expect(result, expectedValue);
       });
     });
 
-    test('dateFormat returns correct format: [${Stubs.dateFormat}]', () async {
+    test('dateFormat returns correct pattern: [${Stubs.datePattern}]', () async {
       await SystemDateTimeFormat().initialize();
-      expect(SystemDateTimeFormat().dateFormat, Stubs.dateFormat);
+      expect(SystemDateTimeFormat().dateFormat, Stubs.datePattern);
     });
 
-    test('mediumDateFormat returns correct format: [${Stubs.mediumDateFormat}]',
+    test('mediumDateFormat returns correct pattern: [${Stubs.mediumDatePattern}]',
         () async {
       await SystemDateTimeFormat().initialize();
-      expect(SystemDateTimeFormat().mediumDateFormat, Stubs.mediumDateFormat);
+      expect(SystemDateTimeFormat().mediumDateFormat, Stubs.mediumDatePattern);
     });
 
-    test('longDateFormat returns correct format: [${Stubs.longDateFormat}]',
+    test('longDateFormat returns correct pattern: [${Stubs.longDatePattern}]',
         () async {
       await SystemDateTimeFormat().initialize();
-      expect(SystemDateTimeFormat().longDateFormat, Stubs.longDateFormat);
+      expect(SystemDateTimeFormat().longDateFormat, Stubs.longDatePattern);
     });
 
-    test('timeFormat returns correct format: [${Stubs.timeFormat}]', () async {
+    test('timeFormat returns correct pattern: [${Stubs.timePattern}]', () async {
       await SystemDateTimeFormat().initialize();
-      expect(SystemDateTimeFormat().timeFormat, Stubs.timeFormat);
+      expect(SystemDateTimeFormat().timeFormat, Stubs.timePattern);
     });
   });
 }
