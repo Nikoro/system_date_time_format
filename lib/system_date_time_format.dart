@@ -1,8 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:system_date_time_format/src/errors/not_ititialized_error.dart';
+import 'package:system_date_time_format/src/errors/sdtf_scope_not_found_error.dart';
 import 'package:system_date_time_format/src/fallbacks.dart';
+import 'package:system_date_time_format/src/patterns.dart';
+import 'package:system_date_time_format/src/widgets/sdtf_scope_inherited.dart';
 
 import 'src/system_date_time_format_platform_interface.dart';
+
+export 'src/patterns.dart';
+export 'src/widgets/sdtf_scope.dart';
 
 /// Provides date and time format from device system settings.
 class SystemDateTimeFormat {
@@ -21,7 +28,8 @@ class SystemDateTimeFormat {
   /// Returns a medium version of date pattern.
   /// May throw [PlatformException] from [MethodChannel].
   Future<String?> getMediumDatePattern() {
-    return SystemDateTimeFormatPlatformInterface.instance.getMediumDatePattern();
+    return SystemDateTimeFormatPlatformInterface.instance
+        .getMediumDatePattern();
   }
 
   /// Returns a long version of date pattern.
@@ -34,6 +42,27 @@ class SystemDateTimeFormat {
   /// May throw [PlatformException] from [MethodChannel].
   Future<String?> getTimePattern() {
     return SystemDateTimeFormatPlatformInterface.instance.getTimePattern();
+  }
+
+  /// Returns all available date & time patterns.
+  /// May throw [PlatformException] from [MethodChannel].
+  Future<Patterns> getAllPatterns() async {
+    return Patterns(
+      datePattern: await getDatePattern(),
+      mediumDatePattern: await getMediumDatePattern(),
+      longDatePattern: await getLongDatePattern(),
+      timePattern: await getTimePattern(),
+    );
+  }
+
+  static Patterns of(BuildContext context) {
+    final sDTFScope =
+        context.dependOnInheritedWidgetOfExactType<SDTFScopeInherited>();
+    if (sDTFScope == null) {
+      throw SDTFScopeNotFoundError(context.widget.runtimeType);
+    }
+
+    return sDTFScope.patterns;
   }
 
   /// Initializes the plugin.

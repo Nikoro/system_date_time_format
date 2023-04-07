@@ -1,58 +1,38 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:system_date_time_format/system_date_time_format.dart';
 import 'package:system_date_time_format_example/fallbacks.dart';
 import 'package:system_date_time_format_example/widgets/widgets.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  final format = SystemDateTimeFormat();
-
-  final datePattern = await format.getDatePattern();
-  final mediumDatePattern = await format.getMediumDatePattern();
-  final longDatePattern = await format.getLongDatePattern();
-  final timePattern = await format.getTimePattern();
-
-  runApp(App(
-    datePattern: datePattern,
-    mediumDatePattern: mediumDatePattern,
-    longDatePattern: longDatePattern,
-    timePattern: timePattern,
-  ));
+void main() {
+  runApp(const SDTFScope(child: App()));
 }
 
 class App extends StatelessWidget {
-  const App({
-    this.datePattern,
-    this.mediumDatePattern,
-    this.longDatePattern,
-    this.timePattern,
-    super.key,
-  });
-
-  final String? datePattern;
-  final String? mediumDatePattern;
-  final String? longDatePattern;
-  final String? timePattern;
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final patterns = {
-      'System short date format pattern:': datePattern ?? Fallbacks.datePattern,
-      'System medium date format pattern:':
-          mediumDatePattern ?? Fallbacks.mediumDatePattern,
-      'System long date format pattern:':
-          longDatePattern ?? Fallbacks.longDatePattern,
-      'System time format pattern:': timePattern ?? Fallbacks.timePattern,
+    final patterns = SystemDateTimeFormat.of(context);
+
+    final datePattern = patterns.datePattern ?? Fallbacks.datePattern;
+    final mediumDatePattern =
+        patterns.mediumDatePattern ?? Fallbacks.mediumDatePattern;
+    final longDatePattern =
+        patterns.longDatePattern ?? Fallbacks.longDatePattern;
+    final timePattern = patterns.timePattern ?? Fallbacks.timePattern;
+
+    final rows = {
+      'System short date format pattern:': datePattern,
+      'System medium date format pattern:': mediumDatePattern,
+      'System long date format pattern:': longDatePattern,
+      'System time format pattern:': timePattern,
     };
 
     return MaterialApp(
       home: Scaffold(
         appBar: const Toolbar(),
         body: Body(
-          children: patterns.entries
+          children: rows.entries
               .map((e) => RowItem(title: e.key, value: e.value))
               .toList(),
         ),
