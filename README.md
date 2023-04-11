@@ -89,6 +89,46 @@ Future<void> main() async {
 }
 ```
 
+### SDTFScope
+You can use raw getters like in the example above (and handle asynchronus operations by yourself) or 
+you can use convenient `SDTFScope` widget for handling these for you.
+
+Simply wrap your root widget in `SDTFScope`:
+```dart
+void main() {
+  runApp(const SDTFScope(child: App()));
+}
+```
+then you can get the date & time patterns down in the widget tree using BuildContext:
+```dart
+final patterns = SystemDateTimeFormat.of(context);
+```
+Example:
+```dart
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final patterns = SystemDateTimeFormat.of(context);
+
+    final datePattern = patterns.datePattern;
+    final timePattern = patterns.timePattern;
+
+    print(datePattern); // e.g. "M/d/yy"
+    print(timePattern); // e.g. "HH:mm"
+
+    return const MaterialApp(
+      home: Scaffold(),
+    );
+  }
+}
+```
+> **Note**
+>
+> `SDTFScope` will automatically sync date & time format patterns even if user changes them 
+> in the device system settings while your app is running.
+
 ### Web
 
 In order to use this plugin on web app you need to add `system_date_time_format.js` script to your `index.html`:
@@ -110,8 +150,6 @@ index.html
 </html>
 ```
 
-### SDTFScope
-
 ### Testing
 
 As the plugin class is not static, it is possible to mock and verify its behaviour when writing
@@ -120,5 +158,4 @@ Check the source code
 of [example_with_tests](https://github.com/Nikoro/system_date_time_format/tree/main/example_with_tests)
 which is a modification of
 basic [example](https://github.com/Nikoro/system_date_time_format/tree/main/example)  
-with dependency injection using [get_it](https://pub.dev/packages/get_it) and mocks thanks
-to [mocktail](https://pub.dev/packages/mocktail).
+with mocks thanks to [mocktail](https://pub.dev/packages/mocktail).
