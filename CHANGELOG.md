@@ -1,3 +1,55 @@
+## 0.6.0
+
+- Introduced `SDTFScope` widget:
+```dart
+void main() {
+  runApp(const SDTFScope(child: App()));
+}
+
+class App extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    final patterns = SystemDateTimeFormat.of(context);
+
+    final datePattern = patterns.datePattern;
+    final mediumDatePattern = patterns.mediumDatePattern;
+    final longDatePattern = patterns.longDatePattern;
+    final timePattern = patterns.timePattern;
+
+    print(datePattern); // e.g. "M/d/yy"
+    print(mediumDatePattern); // e.g. "MMM d,y"
+    print(longDatePattern); // e.g. "MMMM d,y"
+    print(timePattern); // e.g. "HH:mm"
+  }
+}
+```
+- Introduced raw async getters:
+```dart
+final format = SystemDateTimeFormat();
+
+final datePattern = await format.getDatePattern();
+final mediumDatePattern = await format.getMediumDatePattern();
+final longDatePattern = await format.getLongDatePattern();
+final timePattern = await format.getTimePattern();
+
+print(datePattern); // e.g. "M/d/yy"
+print(mediumDatePattern); // e.g. "MMM d,y"
+print(longDatePattern); // e.g. "MMMM d,y"
+print(timePattern); // e.g. "HH:mm"
+```
+> **Warning**
+> 
+> Deprecated `initialize` method -> use `SDTFScope` instead
+> 
+> Deprecated `dateFormat` getter -> use `getDatePattern()` instead
+> 
+> Deprecated `mediumDateFormat` getter -> use `getMediumDatePattern()` instead
+> 
+> Deprecated `longDateFormat` getter -> use `getLongDatePattern()` instead
+> 
+> Deprecated `timeFormat` getter -> use `getTimePattern()` instead
+
 ## 0.5.0
 
 Added linux support

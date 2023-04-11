@@ -30,7 +30,12 @@
 
 Flutter does not support retrieving date and time format patterns based on the user's system
 settings out of the box. However, you can use the `system_date_time_format` plugin to get 
-date and time format patterns for consistent formatting in your Flutter app.
+date and time format patterns for consistent formatting in your Flutter app with ease:
+
+```dart
+final datePattern = await SystemDateTimeFormat().getDatePattern();
+print(datePattern); // e.g. "M/d/yy"
+```
 
 ### Examples
 | iOS (Region: United States 🇺🇸)                                                                                 | Result                                                                                                        |
@@ -60,7 +65,7 @@ date and time format patterns for consistent formatting in your Flutter app.
 ## Usage
 
 Import `import 'package:system_date_time_format/system_date_time_format.dart';`,   
-initialize `SystemDateTimeFormat` and use getters to get date & time formats from device system.
+and use getters to get date & time format patterns from device system.
 
 Example:
 
@@ -69,31 +74,49 @@ import 'package:system_date_time_format/system_date_time_format.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemDateTimeFormat().initialize();
-  runApp(const App());
+  
+  final format = SystemDateTimeFormat();
+
+  final datePattern = await format.getDatePattern();
+  final mediumDatePattern = await format.getMediumDatePattern();
+  final longDatePattern = await format.getLongDatePattern();
+  final timePattern = await format.getTimePattern();
+
+  print(datePattern); // e.g. "M/d/yy"
+  print(mediumDatePattern); // e.g. "MMM d,y"
+  print(longDatePattern); // e.g. "MMMM d,y"
+  print(timePattern); // e.g. "HH:mm"
 }
 ```
 
-> **Note**
->
-> Don't forget to call `initialize()` before accessing any getters:
-> 
-> `dateFormat`, `mediumDateFormat`, `longDateFormat`, `timeFormat`  
-> 
-> otherwise it will throw `NotInitializedError`.
+### SDTFScope
+You can use raw async getters like in the example above (and handle asynchronus operations by yourself) or 
+you can use convenient `SDTFScope` widget for handling these for you.
 
+Simply wrap your root widget in `SDTFScope`:
+```dart
+void main() {
+  runApp(const SDTFScope(child: App()));
+}
+```
+then you can get the date & time patterns down in the widget tree using BuildContext:
+```dart
+final patterns = SystemDateTimeFormat.of(context);
+```
+Example:
 ```dart
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // SystemDateTimeFormat() is a Singleton
-    final dateFormat = SystemDateTimeFormat().dateFormat;
-    final timeFormat = SystemDateTimeFormat().timeFormat;
+    final patterns = SystemDateTimeFormat.of(context);
 
-    print(dateFormat); // e.g. "M/d/yy"
-    print(timeFormat); // e.g. "HH:mm"
+    final datePattern = patterns.datePattern;
+    final timePattern = patterns.timePattern;
+
+    print(datePattern); // e.g. "M/d/yy"
+    print(timePattern); // e.g. "HH:mm"
 
     return const MaterialApp(
       home: Scaffold(),
@@ -101,6 +124,10 @@ class App extends StatelessWidget {
   }
 }
 ```
+> **Note**
+>
+> `SDTFScope` will automatically sync date & time format patterns even if user changes them 
+> in the device system settings while your app is running.
 
 ### Web
 
@@ -123,22 +150,6 @@ index.html
 </html>
 ```
 
-### Fallbacks
-
-In case of some error, e.g. `PlatformException` plugin will return
-[fallback values](https://github.com/Nikoro/system_date_time_format/blob/main/lib/src/fallbacks.dart)
-.  
-You can setup your own values by passing them in the `initialize()`:
-
-```dart
-SystemDateTimeFormat().initialize(
-  dateFormatFallback: // default: 'M/d/yy'
-  mediumDateFormatFallback: // default: 'MMM d,y'
-  longDateFormatFallback: // default: 'MMMM d,y'
-  timeFormatFallback: // default: 'h:mm a'
-);
-```
-
 ### Testing
 
 As the plugin class is not static, it is possible to mock and verify its behaviour when writing
@@ -147,5 +158,4 @@ Check the source code
 of [example_with_tests](https://github.com/Nikoro/system_date_time_format/tree/main/example_with_tests)
 which is a modification of
 basic [example](https://github.com/Nikoro/system_date_time_format/tree/main/example)  
-with dependency injection using [get_it](https://pub.dev/packages/get_it) and mocks thanks
-to [mocktail](https://pub.dev/packages/mocktail).
+with mocks thanks to [mocktail](https://pub.dev/packages/mocktail).

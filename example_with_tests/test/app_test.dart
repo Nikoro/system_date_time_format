@@ -1,34 +1,34 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:system_date_time_format/system_date_time_format.dart';
-import 'package:system_date_time_format_example_with_tests/app.dart';
-import 'package:system_date_time_format_example_with_tests/dependency_injection/injection.dart';
+import 'package:system_date_time_format_example_with_tests/main.dart';
 import 'package:system_date_time_format_example_with_tests/widgets/widgets.dart';
 
 import '_tools/tools.dart';
 
 void main() {
-  setUp(() {
-    final mockSDTFormat = MockSystemDateTimeFormat();
-    when(() => mockSDTFormat.dateFormat).thenReturn(Stubs.dateFormat);
-    when(() => mockSDTFormat.mediumDateFormat)
-        .thenReturn(Stubs.mediumDateFormat);
-    when(() => mockSDTFormat.longDateFormat).thenReturn(Stubs.longDateFormat);
-    when(() => mockSDTFormat.timeFormat).thenReturn(Stubs.timeFormat);
+  late MockSystemDateTimeFormat mockSDTFormat;
 
-    getIt.registerSingleton<SystemDateTimeFormat>(mockSDTFormat);
+  setUp(() {
+    mockSDTFormat = MockSystemDateTimeFormat();
+    when(() => mockSDTFormat.getAllPatterns())
+        .thenAnswer((_) async => Stubs.allPatterns);
   });
 
-  testWidgets('App displays 4 RowItems with Date & Time formats',
+  testWidgets(
+      'App displays 4 RowItems with correct Date & Time format patterns',
       (tester) async {
-    await tester.pumpWidget(const App());
+    await tester.pumpWidget(
+      SDTFScope(format: mockSDTFormat, child: const App()),
+    );
+    await tester.pump();
 
     final rowItems = tester.widgetListByType<RowItem>();
 
     expect(rowItems.length, 4);
-    expect(rowItems[0].value, Stubs.dateFormat);
-    expect(rowItems[1].value, Stubs.mediumDateFormat);
-    expect(rowItems[2].value, Stubs.longDateFormat);
-    expect(rowItems[3].value, Stubs.timeFormat);
+    expect(rowItems[0].value, Stubs.datePattern);
+    expect(rowItems[1].value, Stubs.mediumDatePattern);
+    expect(rowItems[2].value, Stubs.longDatePattern);
+    expect(rowItems[3].value, Stubs.timePattern);
   });
 }

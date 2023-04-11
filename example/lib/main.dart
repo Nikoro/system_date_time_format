@@ -1,13 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:system_date_time_format/system_date_time_format.dart';
+import 'package:system_date_time_format_example/fallbacks.dart';
 import 'package:system_date_time_format_example/widgets/widgets.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SystemDateTimeFormat().initialize();
-  runApp(const App());
+void main() {
+  runApp(const SDTFScope(child: App()));
 }
 
 class App extends StatelessWidget {
@@ -15,18 +12,27 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formats = {
-      'System date format:': SystemDateTimeFormat().dateFormat,
-      'System medium date format:': SystemDateTimeFormat().mediumDateFormat,
-      'System long date format:': SystemDateTimeFormat().longDateFormat,
-      'System time format:': SystemDateTimeFormat().timeFormat,
+    final patterns = SystemDateTimeFormat.of(context);
+
+    final datePattern = patterns.datePattern ?? Fallbacks.datePattern;
+    final mediumDatePattern =
+        patterns.mediumDatePattern ?? Fallbacks.mediumDatePattern;
+    final longDatePattern =
+        patterns.longDatePattern ?? Fallbacks.longDatePattern;
+    final timePattern = patterns.timePattern ?? Fallbacks.timePattern;
+
+    final rows = {
+      'System short date format pattern:': datePattern,
+      'System medium date format pattern:': mediumDatePattern,
+      'System long date format pattern:': longDatePattern,
+      'System time format pattern:': timePattern,
     };
 
     return MaterialApp(
       home: Scaffold(
         appBar: const Toolbar(),
         body: Body(
-          children: formats.entries
+          children: rows.entries
               .map((e) => RowItem(title: e.key, value: e.value))
               .toList(),
         ),
