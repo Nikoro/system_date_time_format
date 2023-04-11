@@ -90,7 +90,7 @@ Future<void> main() async {
 ```
 
 ### SDTFScope
-You can use raw getters like in the example above (and handle asynchronus operations by yourself) or 
+You can use raw async getters like in the example above (and handle asynchronus operations by yourself) or 
 you can use convenient `SDTFScope` widget for handling these for you.
 
 Simply wrap your root widget in `SDTFScope`:

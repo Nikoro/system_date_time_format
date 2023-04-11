@@ -67,6 +67,7 @@ class SystemDateTimeFormat {
 
   /// Initializes the plugin.
   /// Call this method before using the plugin further.
+  /// It will be removed in 1.0.0
   @Deprecated("Use SDTFScope instead.")
   Future<void> initialize({
     String dateFormatFallback = Fallbacks.dateFormat,
@@ -95,6 +96,7 @@ class SystemDateTimeFormat {
 
   /// Returns a short version of date format.
   /// Throws [NotInitializedError] when plugin was not initialized
+  /// It will be removed in 1.0.0
   @Deprecated("Use getDatePattern() instead.")
   String get dateFormat {
     if (_dateFormat == null) {
@@ -105,6 +107,7 @@ class SystemDateTimeFormat {
 
   /// Returns a medium version of date format.
   /// Throws [NotInitializedError] when plugin was not initialized
+  /// It will be removed in 1.0.0
   @Deprecated("Use getMediumDatePattern() instead.")
   String get mediumDateFormat {
     if (_mediumDateFormat == null) {
@@ -115,6 +118,7 @@ class SystemDateTimeFormat {
 
   /// Returns a long version of date format.
   /// Throws [NotInitializedError] when plugin was not initialized
+  /// It will be removed in 1.0.0
   @Deprecated("Use getLongDatePattern() instead.")
   String get longDateFormat {
     if (_longDateFormat == null) {
@@ -125,6 +129,7 @@ class SystemDateTimeFormat {
 
   /// Returns time format.
   /// Throws [NotInitializedError] when plugin was not initialized
+  /// It will be removed in 1.0.0
   @Deprecated("Use getTimePattern() instead.")
   String get timeFormat {
     if (_timeFormat == null) {
