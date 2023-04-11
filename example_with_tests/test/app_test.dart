@@ -11,14 +11,8 @@ void main() {
 
   setUp(() {
     mockSDTFormat = MockSystemDateTimeFormat();
-    const patterns = Patterns(
-      datePattern: Stubs.datePattern,
-      mediumDatePattern: Stubs.mediumDatePattern,
-      longDatePattern: Stubs.longDatePattern,
-      timePattern: Stubs.timePattern,
-    );
     when(() => mockSDTFormat.getAllPatterns())
-        .thenAnswer((_) async => patterns);
+        .thenAnswer((_) async => Stubs.allPatterns);
   });
 
   testWidgets(

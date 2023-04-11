@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:system_date_time_format/src/errors/sdtf_scope_not_found_error.dart';
 import 'package:system_date_time_format/src/system_date_time_format_platform_interface.dart';
 import 'package:system_date_time_format/system_date_time_format.dart';
 
@@ -45,12 +47,36 @@ void main() {
       });
     });
 
-    test('dateFormat returns correct pattern: [${Stubs.datePattern}]', () async {
+    test('getAllPatterns() returns correct patterns', () async {
+      final patterns = await SystemDateTimeFormat().getAllPatterns();
+      expect(patterns, Stubs.allPatterns);
+    });
+
+    testWidgets('of() throws SDTFScopeNotFoundError when there is NO SDTFScope',
+        (tester) async {
+      await tester.pumpWidget(const Placeholder());
+      final context = tester.element(find.byType(Placeholder));
+      expect(() => SystemDateTimeFormat.of(context),
+          throwsA(isA<SDTFScopeNotFoundError>()));
+    });
+
+    testWidgets('of() returns Patterns when there is SDTFScope',
+        (tester) async {
+      await tester.pumpWidget(const SDTFScope(child: Placeholder()));
+      await tester.pump();
+      final context = tester.element(find.byType(Placeholder));
+      final patterns = SystemDateTimeFormat.of(context);
+      expect(patterns, Stubs.allPatterns);
+    });
+
+    test('dateFormat returns correct pattern: [${Stubs.datePattern}]',
+        () async {
       await SystemDateTimeFormat().initialize();
       expect(SystemDateTimeFormat().dateFormat, Stubs.datePattern);
     });
 
-    test('mediumDateFormat returns correct pattern: [${Stubs.mediumDatePattern}]',
+    test(
+        'mediumDateFormat returns correct pattern: [${Stubs.mediumDatePattern}]',
         () async {
       await SystemDateTimeFormat().initialize();
       expect(SystemDateTimeFormat().mediumDateFormat, Stubs.mediumDatePattern);
@@ -62,7 +88,8 @@ void main() {
       expect(SystemDateTimeFormat().longDateFormat, Stubs.longDatePattern);
     });
 
-    test('timeFormat returns correct pattern: [${Stubs.timePattern}]', () async {
+    test('timeFormat returns correct pattern: [${Stubs.timePattern}]',
+        () async {
       await SystemDateTimeFormat().initialize();
       expect(SystemDateTimeFormat().timeFormat, Stubs.timePattern);
     });

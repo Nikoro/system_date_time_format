@@ -16,7 +16,8 @@ void main() {
     when(() => platform.getDatePattern()).thenAnswer(asyncPlatformException);
     when(() => platform.getMediumDatePattern())
         .thenAnswer(asyncPlatformException);
-    when(() => platform.getLongDatePattern()).thenAnswer(asyncPlatformException);
+    when(() => platform.getLongDatePattern())
+        .thenAnswer(asyncPlatformException);
     when(() => platform.getTimePattern()).thenAnswer(asyncPlatformException);
 
     SystemDateTimeFormatPlatformInterface.instance = platform;

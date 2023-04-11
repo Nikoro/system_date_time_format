@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:system_date_time_format/src/patterns.dart';
 import 'package:system_date_time_format/src/widgets/sdtf_scope_inherited.dart';
 import 'package:system_date_time_format/system_date_time_format.dart';
 
@@ -15,7 +14,7 @@ class SDTFScope extends StatefulWidget {
 
 class _SDTFScopeState extends State<SDTFScope> with WidgetsBindingObserver {
   late final SystemDateTimeFormat systemDateTimeFormat;
-  Patterns patterns = Patterns();
+  Patterns patterns = const Patterns();
 
   @override
   void initState() {
