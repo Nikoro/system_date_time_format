@@ -1,3 +1,7 @@
+## 0.6.1
+
+Fixed deprecated usage in comments
+
 ## 0.6.0
 
 - Introduced `SDTFScope` widget:
