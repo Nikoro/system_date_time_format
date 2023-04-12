@@ -150,15 +150,15 @@ class SystemDateTimeFormat {
     }
   }
 
-  /// Holds [dateFormat] value after plugin initialization
+  /// Holds (dateFormat) value after plugin initialization
   String? _dateFormat;
 
-  /// Holds [mediumDateFormat] value after plugin initialization
+  /// Holds (mediumDateFormat) value after plugin initialization
   String? _mediumDateFormat;
 
-  /// Holds [longDateFormat] value after plugin initialization
+  /// Holds (longDateFormat) value after plugin initialization
   String? _longDateFormat;
 
-  /// Holds [timeFormat] value after plugin initialization
+  /// Holds (timeFormat) value after plugin initialization
   String? _timeFormat;
 }
