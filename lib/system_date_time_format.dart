@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:system_date_time_format/src/errors/not_ititialized_error.dart';
+import 'package:system_date_time_format/src/errors/not_initialized_error.dart';
 import 'package:system_date_time_format/src/errors/sdtf_scope_not_found_error.dart';
 import 'package:system_date_time_format/src/fallbacks.dart';
 import 'package:system_date_time_format/src/patterns.dart';

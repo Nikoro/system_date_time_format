@@ -6,6 +6,6 @@ class NotInitializedError extends Error {
 
   @override
   String toString() {
-    return '$name was called before initalization\n\n\nDid you forget to call:\n\nSystemDateTimeFormat().initialize()\n\n';
+    return '$name was called before initialization\n\n\nDid you forget to call:\n\nSystemDateTimeFormat().initialize()\n\n';
   }
 }
