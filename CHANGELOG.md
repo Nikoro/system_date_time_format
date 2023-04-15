@@ -1,3 +1,7 @@
+## 0.7.0
+
+Added logo
+
 ## 0.6.1
 
 Fixed deprecated usage in comments
