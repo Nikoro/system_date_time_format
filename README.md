@@ -1,5 +1,4 @@
-# SystemDateTimeFormat
-
+<p align="center"><img src="https://raw.githubusercontent.com/nikoro/system_date_time_format/develop/logo/logo.png" width="600"/></p>
 <h2 align="center">
   A plugin for getting date & time format from device system settings.
 </h2>
