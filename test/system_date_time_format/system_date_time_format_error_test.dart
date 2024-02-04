@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:system_date_time_format/src/errors/not_ititialized_error.dart';
+import 'package:system_date_time_format/src/errors/not_initialized_error.dart';
 import 'package:system_date_time_format/system_date_time_format.dart';
 
 void main() {

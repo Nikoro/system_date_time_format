@@ -1,4 +1,6 @@
-<p align="center"><img src="https://raw.githubusercontent.com/nikoro/system_date_time_format/develop/logo/logo.png" width="600"/></p>
+<p align="center">
+  <a href="https://pub.dev/packages/system_date_time_format"><img src="https://raw.githubusercontent.com/nikoro/system_date_time_format/main/logo/logo.png" width="600"/></a>
+</p>
 <h2 align="center">
   A plugin for getting date & time format from device system settings.
 </h2>
@@ -39,27 +41,27 @@ print(datePattern); // e.g. "M/d/yy"
 ### Examples
 | iOS (Region: United States 🇺🇸)                                                                                 | Result                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| ![ios_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/ios_setup.jpg)            | ![ios_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/ios_result.jpg)         |
+| ![ios_setup](https://raw.githubusercontent.com/nikoro/system_date_time_format/main/screenshots/ios_setup.jpg)            | ![ios_result](https://raw.githubusercontent.com/nikoro/system_date_time_format/main/screenshots/ios_result.jpg)         |
 
 | Android (Region: United Kingdom 🇬🇧)                                                                            | Result                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| ![android_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/android_setup.jpg)    | ![android_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/android_result.jpg) |
+| ![android_setup](https://raw.githubusercontent.com/nikoro/system_date_time_format/main/screenshots/android_setup.jpg)    | ![android_result](https://raw.githubusercontent.com/nikoro/system_date_time_format/main/screenshots/android_result.jpg) |
 
 | macOS (Region: Poland 🇵🇱)                                                                                      | Result                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| ![macos_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/macos_setup.png)        | ![macos_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/macos_result.png)     |
+| ![macos_setup](https://raw.githubusercontent.com/nikoro/system_date_time_format/main/screenshots/macos_setup.png)        | ![macos_result](https://raw.githubusercontent.com/nikoro/system_date_time_format/main/screenshots/macos_result.png)     |
 
 | windows (Region: United States 🇺🇸)                                                                             | Result                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| ![windows_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/windows_setup.jpg)    | ![windows_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/windows_result.jpg) |
+| ![windows_setup](https://raw.githubusercontent.com/nikoro/system_date_time_format/main/screenshots/windows_setup.jpg)    | ![windows_result](https://raw.githubusercontent.com/nikoro/system_date_time_format/main/screenshots/windows_result.jpg) |
 
 | linux (Region: United States 🇺🇸)                                                                      | Result                                                                                                    |
 |---------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| ![linux_setup](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/linux_setup.png) | ![linux_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/linux_result.png) |
+| ![linux_setup](https://raw.githubusercontent.com/nikoro/system_date_time_format/main/screenshots/linux_setup.png) | ![linux_result](https://raw.githubusercontent.com/nikoro/system_date_time_format/main/screenshots/linux_result.png) |
 
 | web (Region: Poland 🇵🇱)                                                                                                                                                                                                         |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ![web_result](https://github.com/Nikoro/system_date_time_format/blob/main/screenshots/web_result.png)
+| ![web_result](https://raw.githubusercontent.com/nikoro/system_date_time_format/main/screenshots/web_result.png)
 
 ## Usage
 
