@@ -1,3 +1,7 @@
+## 0.7.2
+
+Updated the SDK constraint to '>=2.18.6 <4.0.0'
+
 ## 0.7.1
 
 - Fixed attachments in [README](https://github.com/Nikoro/system_date_time_format/blob/main/README.md)
