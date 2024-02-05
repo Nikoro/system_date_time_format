@@ -1,3 +1,17 @@
+## 1.0.0
+
+**BREAKING CHANGES**:
+>
+> Removed `initialize` method -> use `SDTFScope` instead
+>
+> Removed `dateFormat` getter -> use `getDatePattern()` instead
+>
+> Removed `mediumDateFormat` getter -> use `getMediumDatePattern()` instead
+>
+> Removed `longDateFormat` getter -> use `getLongDatePattern()` instead
+>
+> Removed `timeFormat` getter -> use `getTimePattern()` instead
+
 ## 0.7.2
 
 Updated the SDK constraint to '>=2.18.6 <4.0.0'
