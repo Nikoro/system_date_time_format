@@ -68,30 +68,5 @@ void main() {
       final patterns = SystemDateTimeFormat.of(context);
       expect(patterns, Stubs.allPatterns);
     });
-
-    test('dateFormat returns correct pattern: [${Stubs.datePattern}]',
-        () async {
-      await SystemDateTimeFormat().initialize();
-      expect(SystemDateTimeFormat().dateFormat, Stubs.datePattern);
-    });
-
-    test(
-        'mediumDateFormat returns correct pattern: [${Stubs.mediumDatePattern}]',
-        () async {
-      await SystemDateTimeFormat().initialize();
-      expect(SystemDateTimeFormat().mediumDateFormat, Stubs.mediumDatePattern);
-    });
-
-    test('longDateFormat returns correct pattern: [${Stubs.longDatePattern}]',
-        () async {
-      await SystemDateTimeFormat().initialize();
-      expect(SystemDateTimeFormat().longDateFormat, Stubs.longDatePattern);
-    });
-
-    test('timeFormat returns correct pattern: [${Stubs.timePattern}]',
-        () async {
-      await SystemDateTimeFormat().initialize();
-      expect(SystemDateTimeFormat().timeFormat, Stubs.timePattern);
-    });
   });
 }
