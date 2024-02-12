@@ -16,6 +16,8 @@ public class SwiftSystemDateTimeFormatPlugin: NSObject, FlutterPlugin {
           result(getMediumDateFormat())
       case "getLongDateFormat":
           result(getLongDateFormat())
+      case "getFullDateFormat":
+          result(getFullDateFormat())
       case "getTimeFormat":
           result(getTimeFormat())
       default:
@@ -38,6 +40,12 @@ public class SwiftSystemDateTimeFormatPlugin: NSObject, FlutterPlugin {
     private func getLongDateFormat() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
+        return dateFormatter.dateFormat
+    }
+    
+    private func getFullDateFormat() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
         return dateFormatter.dateFormat
     }
     

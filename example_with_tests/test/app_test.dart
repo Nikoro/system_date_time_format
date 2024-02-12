@@ -16,7 +16,7 @@ void main() {
   });
 
   testWidgets(
-      'App displays 4 RowItems with correct Date & Time format patterns',
+      'App displays 5 RowItems with correct Date & Time format patterns',
       (tester) async {
     await tester.pumpWidget(
       SDTFScope(format: mockSDTFormat, child: const App()),
@@ -25,10 +25,11 @@ void main() {
 
     final rowItems = tester.widgetListByType<RowItem>();
 
-    expect(rowItems.length, 4);
+    expect(rowItems.length, 5);
     expect(rowItems[0].value, Stubs.datePattern);
     expect(rowItems[1].value, Stubs.mediumDatePattern);
     expect(rowItems[2].value, Stubs.longDatePattern);
-    expect(rowItems[3].value, Stubs.timePattern);
+    expect(rowItems[3].value, Stubs.fullDatePattern);
+    expect(rowItems[4].value, Stubs.timePattern);
   });
 }

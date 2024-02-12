@@ -17,6 +17,8 @@ void main() {
         .thenAnswer((_) async => Stubs.mediumDatePattern);
     when(() => platform.getLongDatePattern())
         .thenAnswer((_) async => Stubs.longDatePattern);
+    when(() => platform.getFullDatePattern())
+        .thenAnswer((_) async => Stubs.fullDatePattern);
     when(() => platform.getTimePattern())
         .thenAnswer((_) async => Stubs.timePattern);
 
@@ -35,6 +37,7 @@ void main() {
       [SystemDateTimeFormat().getDatePattern, Stubs.datePattern],
       [SystemDateTimeFormat().getMediumDatePattern, Stubs.mediumDatePattern],
       [SystemDateTimeFormat().getLongDatePattern, Stubs.longDatePattern],
+      [SystemDateTimeFormat().getFullDatePattern, Stubs.fullDatePattern],
       [SystemDateTimeFormat().getTimePattern, Stubs.timePattern],
     ].forEach((input) {
       final function = input.first as Future<String?> Function();

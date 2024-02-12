@@ -36,6 +36,12 @@ class SystemDateTimeFormat {
     return SystemDateTimeFormatPlatformInterface.instance.getLongDatePattern();
   }
 
+  /// Returns a full version of date pattern.
+  /// May throw [PlatformException] from [MethodChannel].
+  Future<String?> getFullDatePattern() {
+    return SystemDateTimeFormatPlatformInterface.instance.getFullDatePattern();
+  }
+
   /// Returns time pattern.
   /// May throw [PlatformException] from [MethodChannel].
   Future<String?> getTimePattern() {
@@ -49,17 +55,18 @@ class SystemDateTimeFormat {
       datePattern: await getDatePattern(),
       mediumDatePattern: await getMediumDatePattern(),
       longDatePattern: await getLongDatePattern(),
+      fullDatePattern: await getFullDatePattern(),
       timePattern: await getTimePattern(),
     );
   }
 
   static Patterns of(BuildContext context) {
-    final sDTFScope =
+    final scope =
         context.dependOnInheritedWidgetOfExactType<SDTFScopeInherited>();
-    if (sDTFScope == null) {
+    if (scope == null) {
       throw SDTFScopeNotFoundError(context.widget.runtimeType);
     }
 
-    return sDTFScope.patterns;
+    return scope.patterns;
   }
 }

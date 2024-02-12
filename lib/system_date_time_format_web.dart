@@ -8,11 +8,14 @@ import 'package:system_date_time_format/src/system_date_time_format_platform_int
 @JS('getDateFormat')
 external String _getDateFormat();
 
+@JS('getMediumDateFormat')
+external String _getMediumDateFormat();
+
 @JS('getLongDateFormat')
 external String _getLongDateFormat();
 
-@JS('getMediumDateFormat')
-external String _getMediumDateFormat();
+@JS('getFullDateFormat')
+external String _getFullDateFormat();
 
 @JS('getTimeFormat')
 external String _getTimeFormat();
@@ -42,6 +45,12 @@ class SystemDateTimeFormatWeb extends SystemDateTimeFormatPlatformInterface {
   @override
   Future<String> getLongDatePattern() async {
     return _getLongDateFormat();
+  }
+
+  /// Returns a full version of date format.
+  @override
+  Future<String> getFullDatePattern() async {
+    return _getFullDateFormat();
   }
 
   /// Returns time format.

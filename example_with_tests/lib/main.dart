@@ -19,13 +19,16 @@ class App extends StatelessWidget {
         patterns.mediumDatePattern ?? Fallbacks.mediumDatePattern;
     final longDatePattern =
         patterns.longDatePattern ?? Fallbacks.longDatePattern;
+    final fullDatePattern =
+        patterns.fullDatePattern ?? Fallbacks.fullDatePattern;
     final timePattern = patterns.timePattern ?? Fallbacks.timePattern;
 
     final rows = {
-      'System short date format pattern:': datePattern,
-      'System medium date format pattern:': mediumDatePattern,
-      'System long date format pattern:': longDatePattern,
-      'System time format pattern:': timePattern,
+      'Short date format pattern:': datePattern,
+      'Medium date format pattern:': mediumDatePattern,
+      'Long date format pattern:': longDatePattern,
+      'Full date format pattern:': fullDatePattern,
+      'Time format pattern:': timePattern,
     };
 
     return MaterialApp(

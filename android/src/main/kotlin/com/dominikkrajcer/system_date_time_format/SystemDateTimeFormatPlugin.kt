@@ -31,6 +31,7 @@ class SystemDateTimeFormatPlugin : FlutterPlugin, MethodCallHandler {
             "getDateFormat" -> result.success(getDateFormat())
             "getMediumDateFormat" -> result.success(getMediumDateFormat())
             "getLongDateFormat" -> result.success(getLongDateFormat())
+            "getFullDateFormat" -> result.success(null)
             "getTimeFormat" -> result.success(getTimeFormat())
             else -> result.notImplemented()
         }
