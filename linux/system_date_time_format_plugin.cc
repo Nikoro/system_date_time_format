@@ -176,6 +176,9 @@ static void system_date_time_format_plugin_handle_method_call(
 		response = FL_METHOD_RESPONSE(fl_method_success_response_new(fl_value_new_string(formatted_date)));
 		free(formatted_date);
 	}
+    else if (strcmp(method, "getFullDateFormat") == 0) {
+        response = FL_METHOD_RESPONSE(fl_method_success_response_new(fl_value_new_string("")));
+    }
 	else if (strcmp(method, "getTimeFormat") == 0) {
 		char* time = nl_langinfo(T_FMT);
 		char* formatted_time = format_time(time);

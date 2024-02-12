@@ -44,7 +44,7 @@ namespace system_date_time_format {
 		}
 
 		if (method_call.method_name() == "getMediumDateFormat") {
-			result->Success(EncodableValue(SystemDateTimeFormatPlugin::getMediumDateFormat()));
+			result->Success(EncodableValue(""));
 			return;
 		}
 
@@ -52,6 +52,11 @@ namespace system_date_time_format {
 			result->Success(EncodableValue(SystemDateTimeFormatPlugin::getLongDateFormat()));
 			return;
 		}
+
+        if (method_call.method_name() == "getFullDateFormat") {
+            result->Success(EncodableValue(""));
+            return;
+        }
 
 		if (method_call.method_name() == "getTimeFormat") {
 			result->Success(EncodableValue(SystemDateTimeFormatPlugin::getTimeFormat()));
@@ -63,10 +68,6 @@ namespace system_date_time_format {
 
 	string SystemDateTimeFormatPlugin::getDateFormat() {
 		return getFormat(LOCALE_SSHORTDATE);
-	}
-
-	string SystemDateTimeFormatPlugin::getMediumDateFormat() {
-		return "";
 	}
 
 	string SystemDateTimeFormatPlugin::getLongDateFormat() {
