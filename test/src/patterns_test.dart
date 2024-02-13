@@ -6,12 +6,14 @@ void main() {
     datePattern: 'datePattern',
     mediumDatePattern: 'mediumDatePattern',
     longDatePattern: 'longDatePattern',
+    fullDatePattern: 'fullDatePattern',
     timePattern: 'timePattern',
   );
   const patterns2 = Patterns(
     datePattern: 'datePattern',
     mediumDatePattern: 'mediumDatePattern',
     longDatePattern: 'longDatePattern',
+    fullDatePattern: 'fullDatePattern',
     timePattern: 'timePattern',
   );
   const patterns3 = Patterns();

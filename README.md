@@ -81,11 +81,13 @@ Future<void> main() async {
   final datePattern = await format.getDatePattern();
   final mediumDatePattern = await format.getMediumDatePattern();
   final longDatePattern = await format.getLongDatePattern();
+  final fullDatePattern = await format.getFullDatePattern(); // available only on iOS, macOS and web
   final timePattern = await format.getTimePattern();
 
   print(datePattern); // e.g. "M/d/yy"
   print(mediumDatePattern); // e.g. "MMM d,y"
   print(longDatePattern); // e.g. "MMMM d,y"
+  print(fullDatePattern); // e.g. "EEEE, MMMM d, y"
   print(timePattern); // e.g. "HH:mm"
 }
 ```

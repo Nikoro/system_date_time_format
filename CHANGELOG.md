@@ -1,3 +1,8 @@
+## 1.1.0
+
+- Added `full date pattern` (only available for iOS, macOS and web)
+- Fix returning empty string `""` instead of `null` on windows & linux when pattern is unavailable
+
 ## 1.0.0
 
 **BREAKING CHANGES**:

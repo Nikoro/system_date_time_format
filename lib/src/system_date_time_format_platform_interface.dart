@@ -33,6 +33,9 @@ abstract class SystemDateTimeFormatPlatformInterface extends PlatformInterface {
   /// Method signature for returning long version of date format pattern
   Future<String?> getLongDatePattern();
 
+  /// Method signature for returning full version of date format pattern
+  Future<String?> getFullDatePattern();
+
   /// Method signature for returning time format pattern
   Future<String?> getTimePattern();
 }

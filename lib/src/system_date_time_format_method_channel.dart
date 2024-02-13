@@ -31,6 +31,13 @@ class MethodChannelSystemDateTimeFormat
     return methodChannel.invokeMethod<String>('getLongDateFormat');
   }
 
+  /// Invokes "getFullDateFormat" method on system_date_time_format [methodChannel]
+  /// returning fullDateFormat
+  @override
+  Future<String?> getFullDatePattern() {
+    return methodChannel.invokeMethod<String>('getFullDateFormat');
+  }
+
   /// Invokes "getTimeFormat" method on system_date_time_format [methodChannel]
   /// returning timeFormat
   @override

@@ -17,6 +17,7 @@ void main() {
       [platform.getDatePattern, Stubs.datePattern],
       [platform.getMediumDatePattern, Stubs.mediumDatePattern],
       [platform.getLongDatePattern, Stubs.longDatePattern],
+      [platform.getFullDatePattern, Stubs.fullDatePattern],
       [platform.getTimePattern, Stubs.timePattern],
     ].forEach((input) {
       final function = input.first as Future<String?> Function();

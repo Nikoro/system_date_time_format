@@ -30,6 +30,7 @@ namespace system_date_time_format {
 		string getDateFormat();
 		string getMediumDateFormat();
 		string getLongDateFormat();
+		string getFullDateFormat();
 		string getTimeFormat();
 		string getFormat(LCTYPE infoType);
 	};
