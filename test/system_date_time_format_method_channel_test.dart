@@ -5,12 +5,15 @@ import 'package:system_date_time_format/src/system_date_time_format_method_chann
 import '_tools/tools.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   final platform = MethodChannelSystemDateTimeFormat();
   const channel = MethodChannel('system_date_time_format');
 
-  TestWidgetsFlutterBinding.ensureInitialized();
-
-  tearDown(() => channel.setMockMethodCallHandler(null));
+  tearDown(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, null);
+  });
 
   group('MethodChannelSystemDateTimeFormat', () {
     [
@@ -25,7 +28,8 @@ void main() {
 
       test('${function.name}() returns correct format: [$expectedValue]',
           () async {
-        channel.setMockMethodCallHandler((_) async => expectedValue);
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(channel, (_) async => expectedValue);
 
         final result = await function();
         expect(result, expectedValue);
