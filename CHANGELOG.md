@@ -1,3 +1,7 @@
+## 1.1.1
+
+Refactor deprecated methods in tests
+
 ## 1.1.0
 
 - Added `full date pattern` (only available for iOS, macOS and web)
