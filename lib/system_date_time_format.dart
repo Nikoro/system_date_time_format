@@ -19,6 +19,7 @@ class SystemDateTimeFormat {
   static final SystemDateTimeFormat _instance = SystemDateTimeFormat._();
 
   /// Returns a short version of date pattern.
+  /// Available on iOS, macOS, android, web, windows and linux
   /// May throw [PlatformException] from [MethodChannel].
   Future<String?> getDatePattern() async {
     final pattern =
@@ -27,6 +28,7 @@ class SystemDateTimeFormat {
   }
 
   /// Returns a medium version of date pattern.
+  /// Available on iOS, macOS, android and web
   /// May throw [PlatformException] from [MethodChannel].
   Future<String?> getMediumDatePattern() async {
     final pattern = await SystemDateTimeFormatPlatformInterface.instance
@@ -35,6 +37,7 @@ class SystemDateTimeFormat {
   }
 
   /// Returns a long version of date pattern.
+  /// Available on iOS, macOS, android, web, windows and linux
   /// May throw [PlatformException] from [MethodChannel].
   Future<String?> getLongDatePattern() async {
     final pattern = await SystemDateTimeFormatPlatformInterface.instance
@@ -43,6 +46,7 @@ class SystemDateTimeFormat {
   }
 
   /// Returns a full version of date pattern.
+  /// Available on iOS, macOS and web
   /// May throw [PlatformException] from [MethodChannel].
   Future<String?> getFullDatePattern() async {
     final pattern = await SystemDateTimeFormatPlatformInterface.instance
@@ -51,6 +55,7 @@ class SystemDateTimeFormat {
   }
 
   /// Returns time pattern.
+  /// Available on iOS, macOS, android, web, windows and linux
   /// May throw [PlatformException] from [MethodChannel].
   Future<String?> getTimePattern() async {
     final pattern =
