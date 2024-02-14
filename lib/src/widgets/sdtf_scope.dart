@@ -3,7 +3,11 @@ import 'package:system_date_time_format/src/widgets/sdtf_scope_inherited.dart';
 import 'package:system_date_time_format/system_date_time_format.dart';
 
 class SDTFScope extends StatefulWidget {
-  const SDTFScope({required this.child, this.format, super.key});
+  const SDTFScope({
+    required this.child,
+    @visibleForTesting this.format,
+    super.key,
+  });
 
   final Widget child;
   final SystemDateTimeFormat? format;

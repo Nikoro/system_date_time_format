@@ -15,4 +15,17 @@ abstract class Stubs {
     fullDatePattern: fullDatePattern,
     timePattern: timePattern,
   );
+
+  static const differentDatePattern = 'differentDatePattern';
+  static const differentMediumDatePattern = 'differentMediumDatePattern';
+  static const differentLongDatePattern = 'differentLongDatePattern';
+  static const differentFullDatePattern = 'differentFullDatePattern';
+  static const differentTimePattern = 'differentTimePattern';
+  static const allDifferentPatterns = Patterns(
+    datePattern: differentDatePattern,
+    mediumDatePattern: differentMediumDatePattern,
+    longDatePattern: differentLongDatePattern,
+    fullDatePattern: differentFullDatePattern,
+    timePattern: differentTimePattern,
+  );
 }
