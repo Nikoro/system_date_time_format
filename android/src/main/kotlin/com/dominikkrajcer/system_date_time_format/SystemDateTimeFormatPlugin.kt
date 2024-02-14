@@ -3,7 +3,6 @@ package com.dominikkrajcer.system_date_time_format
 import android.content.Context
 import android.text.format.DateFormat
 import androidx.annotation.NonNull
-
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -31,7 +30,7 @@ class SystemDateTimeFormatPlugin : FlutterPlugin, MethodCallHandler {
             "getDateFormat" -> result.success(getDateFormat())
             "getMediumDateFormat" -> result.success(getMediumDateFormat())
             "getLongDateFormat" -> result.success(getLongDateFormat())
-            "getFullDateFormat" -> result.success(null)
+            "getFullDateFormat" -> result.success(getFullDateFormat())
             "getTimeFormat" -> result.success(getTimeFormat())
             else -> result.notImplemented()
         }
@@ -55,6 +54,12 @@ class SystemDateTimeFormatPlugin : FlutterPlugin, MethodCallHandler {
     private fun getLongDateFormat(): String {
         val longDateFormat = DateFormat.getLongDateFormat(applicationContext)
         return (longDateFormat as SimpleDateFormat).toLocalizedPattern()
+    }
+
+    private fun getFullDateFormat(): String {
+        val locale = applicationContext.resources.configuration.locale
+        val fullDateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.FULL, locale)
+        return (fullDateFormat as SimpleDateFormat).toLocalizedPattern()
     }
 
     private fun getTimeFormat(): String {
