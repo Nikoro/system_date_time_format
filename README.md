@@ -83,9 +83,9 @@ Future<void> main() async {
   final format = SystemDateTimeFormat();
 
   final datePattern = await format.getDatePattern();
-  final mediumDatePattern = await format.getMediumDatePattern();
+  final mediumDatePattern = await format.getMediumDatePattern(); // Not on Windows & Linux
   final longDatePattern = await format.getLongDatePattern();
-  final fullDatePattern = await format.getFullDatePattern(); // available only on iOS, macOS and web
+  final fullDatePattern = await format.getFullDatePattern();     // Not on Windows & Linux
   final timePattern = await format.getTimePattern();
 
   print(datePattern); // e.g. "M/d/yy"

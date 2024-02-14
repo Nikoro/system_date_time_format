@@ -1,3 +1,7 @@
+## 1.2.0
+
+Added `full date pattern` for android
+
 ## 1.1.2
 
 - Updated README info about -> [`system_date_time_format_hook`](https://pub.dev/packages/system_date_time_format_hook) package
