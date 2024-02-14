@@ -1,3 +1,8 @@
+## 1.1.2
+
+- Updated README info about -> [`system_date_time_format_hook`](https://pub.dev/packages/system_date_time_format_hook) package
+- Improved tests
+
 ## 1.1.1
 
 Refactor deprecated methods in tests

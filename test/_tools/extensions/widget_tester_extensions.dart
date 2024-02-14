@@ -1,8 +1,7 @@
 part of 'extensions.dart';
 
 extension WidgetTesterExtensions on WidgetTester {
-  Future<BuildContext> createContext() async {
-    await pumpWidget(Container());
-    return element(find.byType(Container));
+  Future<void> setupWidget(Widget widget) {
+    return pumpWidget(MaterialApp(home: widget));
   }
 }
