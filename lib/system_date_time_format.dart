@@ -46,7 +46,7 @@ class SystemDateTimeFormat {
   }
 
   /// Returns a full version of date pattern.
-  /// Available on iOS, macOS and web
+  /// Available on iOS, macOS, android and web
   /// May throw [PlatformException] from [MethodChannel].
   Future<String?> getFullDatePattern() async {
     final pattern = await SystemDateTimeFormatPlatformInterface.instance
