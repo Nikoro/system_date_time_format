@@ -38,6 +38,10 @@ final datePattern = await SystemDateTimeFormat().getDatePattern();
 print(datePattern); // e.g. "M/d/yy"
 ```
 
+### Do you use [flutter_hooks](https://pub.dev/packages/flutter_hooks) in the project?
+
+Consider using: [`system_date_time_format_hook`](https://pub.dev/packages/system_date_time_format_hook) instead.
+
 ### Examples
 | iOS (Region: United States 🇺🇸)                                                                                 | Result                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -130,6 +134,39 @@ class App extends StatelessWidget {
 > **Note**
 >
 > `SDTFScope` will automatically sync date & time format patterns even if user changes them 
+> in the device system settings while your app is running.
+
+### [Flutter hooks](https://pub.dev/packages/flutter_hooks)
+You can use `SDTFScope` as shown in the example above. However, if you already know and use [flutter_hooks](https://pub.dev/packages/flutter_hooks)
+in your project you can use [`system_date_time_format_hook`](https://pub.dev/packages/system_date_time_format_hook) instead, to achieve a similar effect:
+
+Example:
+```dart
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:system_date_time_format_hook/system_date_time_format_hook.dart';
+
+class App extends HookWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final patterns = useSystemDateTimeFormat();
+
+    final datePattern = patterns.datePattern;
+    final timePattern = patterns.timePattern;
+
+    print(datePattern); // e.g. "M/d/yy"
+    print(timePattern); // e.g. "HH:mm"
+
+    return const MaterialApp(
+      home: Scaffold(),
+    );
+  }
+}
+```
+> **Note**
+>
+> [`system_date_time_format_hook`](https://pub.dev/packages/system_date_time_format_hook) will automatically sync date & time format patterns even if user changes them
 > in the device system settings while your app is running.
 
 ### Web
