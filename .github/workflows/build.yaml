@@ -12,7 +12,7 @@ jobs:
       - name: Install lcov
         run: sudo apt-get install -y lcov
       - name: Checkout the code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
       - name: Get dependencies
@@ -22,6 +22,6 @@ jobs:
       - name: Unit tests
         run: make test
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
