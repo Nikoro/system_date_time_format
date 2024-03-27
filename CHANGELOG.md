@@ -1,3 +1,11 @@
+## 1.2.1
+
+- Fix bug on android:
+> A problem occurred configuring project ':system_date_time_format'.
+> Could not create an instance of type com.android.build.api.variant.impl.LibraryVariantBuilderImpl.
+> Namespace not specified. Specify a namespace in the module's build file. See https://d.android.com/r/tools/upgrade-assistant/set-namespace for information about setting the namespace.
+- Update dependencies
+
 ## 1.2.0
 
 Added `full date pattern` for android
