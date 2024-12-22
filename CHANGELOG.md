@@ -1,3 +1,8 @@
+## 1.2.2
+
+- Added WASM compatibility
+- Update dependencies
+
 ## 1.2.1
 
 - Fix bug on android:
