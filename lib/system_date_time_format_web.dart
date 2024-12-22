@@ -1,8 +1,9 @@
 @JS()
 library system_date_time_format_web;
 
+import 'dart:js_interop';
+
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:js/js.dart';
 import 'package:system_date_time_format/src/system_date_time_format_platform_interface.dart';
 
 @JS('getDateFormat')

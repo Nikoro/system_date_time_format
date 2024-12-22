@@ -1,4 +1,4 @@
-package com.example.sytem_date_time_format_example
+package com.example.example_with_tests
 
 import io.flutter.embedding.android.FlutterActivity
 
