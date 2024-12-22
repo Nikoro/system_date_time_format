@@ -1,11 +1,11 @@
 {
-    "name": "system_date_time_format_example",
-    "short_name": "system_date_time_format_example",
+    "name": "example_with_tests",
+    "short_name": "example_with_tests",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Demonstrates how to use the system_date_time_format plugin.",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
