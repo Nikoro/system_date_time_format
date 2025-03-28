@@ -1,7 +1,8 @@
 ## 1.3.0
 
-- Switch to dart:js_interop
-- Update SDK constraint to ">=3.3.0 <4.0.0"
+- Remove unnecessary `js_interop` dependency
+- Update Dart version to ">=3.3.0 <4.0.0"
+- Update Flutter version to ">=3.19.0"
 
 ## 1.2.2
 
