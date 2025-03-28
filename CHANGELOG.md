@@ -1,3 +1,8 @@
+## 1.3.0
+
+- Switch to dart:js_interop
+- Update SDK constraint to ">=3.3.0 <4.0.0"
+
 ## 1.2.2
 
 - Added WASM compatibility

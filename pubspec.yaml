@@ -1,19 +1,18 @@
 name: system_date_time_format
 description: A plugin for getting date and time format patterns from device system settings.
-version: 1.2.2
+version: 1.3.0
 repository: https://github.com/Nikoro/system_date_time_format
 issue_tracker: https://github.com/Nikoro/system_date_time_format/issues
 
 environment:
-  sdk: '>=2.18.6 <4.0.0'
-  flutter: ">=2.5.0"
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  js_interop: ^0.0.1
   plugin_platform_interface: ^2.1.8
 
 dev_dependencies:
