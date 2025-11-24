@@ -36,120 +36,96 @@ char* trim(char* s) {
 char* format_date(const char* date) {
 	const int BUFFER_LENGTH = strlen(date) * 3 + 1;
 	char* formatted_date = (char*)malloc(BUFFER_LENGTH);
-	memset(formatted_date, 0, BUFFER_LENGTH);
-
+	if (!formatted_date) return nullptr;
+	
+	int pos = 0;
 	int i = 0;
-	while (date[i] != '\0') {
-		if (date[i] == '%') {
+	while (date[i] != '\0' && pos < BUFFER_LENGTH - 11) {
+		if (date[i] == '%' && date[i + 1] != '\0') {
 			char specifier = date[i + 1];
+			const char* replacement = nullptr;
 			switch (specifier) {
-			case 'a': strcat(formatted_date, "ddd"); break;
-			case 'A': strcat(formatted_date, "dddd"); break;
+			case 'a': replacement = "ddd"; break;
+			case 'A': replacement = "dddd"; break;
 			case 'b':
-			case 'h': strcat(formatted_date, "MMM"); break;
-			case 'B': strcat(formatted_date, "MMMM"); break;
-			case 'c': strcat(formatted_date, ""); break;
-			case 'C': strcat(formatted_date, "yy"); break;
-			case 'd': strcat(formatted_date, "dd"); break;
-			case 'D': strcat(formatted_date, "MM/dd/yy"); break;
-			case 'e': strcat(formatted_date, "d"); break;
-			case 'F': strcat(formatted_date, "yyyy-MM-dd"); break;
-			case 'g': strcat(formatted_date, "yy"); break;
-			case 'G': strcat(formatted_date, "yyyy"); break;
-			case 'H':
-			case 'I':
-			case 'j': strcat(formatted_date, "DDD"); break;
-			case 'm': strcat(formatted_date, "MM"); break;
-			case 'M':
-			case 'n':
-			case 'p':
-			case 'r':
-			case 'R':
-			case 'S':
-			case 't':
-			case 'T':
-			case 'u':
-			case 'U':
-			case 'V':
-			case 'w':
-			case 'W':
-			case 'x':
-			case 'X': strcat(formatted_date, ""); break;
-			case 'y': strcat(formatted_date, "yy"); break;
-			case 'Y': strcat(formatted_date, "yyyy"); break;
-			case 'z':
-			case 'Z':
-			case '%': strcat(formatted_date, ""); break;
-			default: formatted_date[strlen(formatted_date)] = date[i + 1]; break;
+			case 'h': replacement = "MMM"; break;
+			case 'B': replacement = "MMMM"; break;
+			case 'C': replacement = "yy"; break;
+			case 'd': replacement = "dd"; break;
+			case 'D': replacement = "MM/dd/yy"; break;
+			case 'e': replacement = "d"; break;
+			case 'F': replacement = "yyyy-MM-dd"; break;
+			case 'g': replacement = "yy"; break;
+			case 'G': replacement = "yyyy"; break;
+			case 'j': replacement = "DDD"; break;
+			case 'm': replacement = "MM"; break;
+			case 'y': replacement = "yy"; break;
+			case 'Y': replacement = "yyyy"; break;
+			case '%': 
+				formatted_date[pos++] = '%';
+				break;
+			default: 
+				formatted_date[pos++] = date[i + 1];
+				break;
+			}
+			if (replacement) {
+				int len = strlen(replacement);
+				memcpy(formatted_date + pos, replacement, len);
+				pos += len;
 			}
 			i += 2;
 		}
 		else {
-			formatted_date[strlen(formatted_date)] = date[i];
+			formatted_date[pos++] = date[i];
 			i++;
 		}
 	}
-	formatted_date[strlen(formatted_date)] = '\0';
+	formatted_date[pos] = '\0';
 	return trim(formatted_date);
 }
 
 char* format_time(const char* time) {
 	const int BUFFER_LENGTH = strlen(time) * 3 + 1;
 	char* formatted_time = (char*)malloc(BUFFER_LENGTH);
-	memset(formatted_time, 0, BUFFER_LENGTH);
-
+	if (!formatted_time) return nullptr;
+	
+	int pos = 0;
 	int i = 0;
-	while (time[i] != '\0') {
-		if (time[i] == '%') {
+	while (time[i] != '\0' && pos < BUFFER_LENGTH - 15) {
+		if (time[i] == '%' && time[i + 1] != '\0') {
 			char specifier = time[i + 1];
+			const char* replacement = nullptr;
 			switch (specifier) {
-			case 'a':
-			case 'A':
-			case 'b':
-			case 'h':
-			case 'B':
-			case 'c':
-			case 'C':
-			case 'd':
-			case 'D':
-			case 'e':
-			case 'F':
-			case 'g':
-			case 'G': strcat(formatted_time, ""); break;
-			case 'H': strcat(formatted_time, "HH"); break;
-			case 'I': strcat(formatted_time, "hh"); break;
-			case 'j':
-			case 'm': strcat(formatted_time, ""); break;
-			case 'M': strcat(formatted_time, "mm"); break;
-			case 'n': strcat(formatted_time, "\n"); break;
-			case 'p': strcat(formatted_time, "tt"); break;
-			case 'r': strcat(formatted_time, "hh:mm:ss tt"); break;
-			case 'R': strcat(formatted_time, "HH:mm"); break;
-			case 'S': strcat(formatted_time, "ss"); break;
-			case 't': strcat(formatted_time, "\t"); break;
-			case 'T': strcat(formatted_time, "HH:mm:ss"); break;
-			case 'u':
-			case 'U':
-			case 'V':
-			case 'w':
-			case 'W':
-			case 'x':
-			case 'X':
-			case 'y':
-			case 'Y':
-			case 'z':
-			case 'Z':
-			case '%': strcat(formatted_time, ""); break;
-			default: formatted_time[strlen(formatted_time)] = time[i + 1]; break;
+			case 'H': replacement = "HH"; break;
+			case 'I': replacement = "hh"; break;
+			case 'M': replacement = "mm"; break;
+			case 'n': replacement = "\n"; break;
+			case 'p': replacement = "a"; break;
+			case 'r': replacement = "hh:mm:ss a"; break;
+			case 'R': replacement = "HH:mm"; break;
+			case 'S': replacement = "ss"; break;
+			case 't': replacement = "\t"; break;
+			case 'T': replacement = "HH:mm:ss"; break;
+			case '%': 
+				formatted_time[pos++] = '%';
+				break;
+			default: 
+				formatted_time[pos++] = time[i + 1];
+				break;
+			}
+			if (replacement) {
+				int len = strlen(replacement);
+				memcpy(formatted_time + pos, replacement, len);
+				pos += len;
 			}
 			i += 2;
 		}
 		else {
-			formatted_time[strlen(formatted_time)] = time[i];
+			formatted_time[pos++] = time[i];
 			i++;
 		}
 	}
-	formatted_time[strlen(formatted_time)] = '\0';
+	formatted_time[pos] = '\0';
 	return trim(formatted_time);
 }
 

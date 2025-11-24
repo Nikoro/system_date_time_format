@@ -79,12 +79,37 @@ namespace system_date_time_format {
 	}
 
 	string SystemDateTimeFormatPlugin::getFormat(LCTYPE infoType) {
-		TCHAR buffer[80];
-		GetLocaleInfo(LOCALE_USER_DEFAULT, infoType, buffer, 80);
+		// First, get the required buffer size
+		int bufferSize = GetLocaleInfo(LOCALE_USER_DEFAULT, infoType, nullptr, 0);
+		if (bufferSize == 0) {
+			return "";
+		}
+		
+		// Allocate buffer with the required size
+		TCHAR* buffer = new (std::nothrow) TCHAR[bufferSize];
+		if (!buffer) {
+			return "";
+		}
+		
+		int result_size = GetLocaleInfo(LOCALE_USER_DEFAULT, infoType, buffer, bufferSize);
+		if (result_size == 0) {
+			delete[] buffer;
+			return "";
+		}
 
+		// Convert to UTF-8
 		int size = WideCharToMultiByte(CP_UTF8, 0, buffer, -1, nullptr, 0, nullptr, nullptr);
 		string result(size - 1, 0); // subtract 1 to remove the null terminator
 		WideCharToMultiByte(CP_UTF8, 0, buffer, -1, &result[0], size, nullptr, nullptr);
+		
+		delete[] buffer;
+
+		// Convert Windows 'tt' (A.M./P.M.) pattern to standard 'a' pattern
+		size_t pos = 0;
+		while ((pos = result.find("tt", pos)) != string::npos) {
+			result.replace(pos, 2, "a");
+			pos += 1;
+		}
 
 		return result;
 	}
