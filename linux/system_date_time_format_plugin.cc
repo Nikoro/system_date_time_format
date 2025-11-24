@@ -70,8 +70,10 @@ char* format_date(const char* date) {
 			}
 			if (replacement) {
 				int len = strlen(replacement);
-				memcpy(formatted_date + pos, replacement, len);
-				pos += len;
+				if (pos + len < BUFFER_LENGTH) {
+					memcpy(formatted_date + pos, replacement, len);
+					pos += len;
+				}
 			}
 			i += 2;
 		}
