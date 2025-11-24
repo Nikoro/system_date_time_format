@@ -7,7 +7,7 @@ const getDateTimeFormatPattern = (options) => {
             case "day": return "d".repeat(part.value.length);
             case "month": return "M".repeat(Math.min(4, part.value.length));
             case "year": return "y".repeat(part.value.length);
-            case "hour": return hasDayPeriod ? "h" : "HH";
+            case "hour": return hasDayPeriod ? "h".repeat(part.value.length) : "H".repeat(part.value.length);
             case "minute": return "m".repeat(part.value.length);
             case "second": return "s".repeat(part.value.length);
             case "literal": return part.value;
