@@ -1,3 +1,10 @@
+## 1.3.0
+
+- **BREAKING**: Updated minimum Dart SDK to 3.2.0 (from 2.18.6) and Flutter SDK to 3.16.0 (from 2.5.0)
+- Removed js_interop package dependency (now using built-in dart:js_interop)
+- Fixed AM/PM pattern conversion from 'tt' to 'a' on Windows and Linux platforms
+- Fixed hour pattern formatting on web platform
+
 ## 1.2.2
 
 - Added WASM compatibility

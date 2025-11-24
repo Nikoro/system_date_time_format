@@ -1,6 +1,6 @@
 name: system_date_time_format
 description: A plugin for getting date and time format patterns from device system settings.
-version: 1.2.2
+version: 1.3.0
 repository: https://github.com/Nikoro/system_date_time_format
 issue_tracker: https://github.com/Nikoro/system_date_time_format/issues
 
