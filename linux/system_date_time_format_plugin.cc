@@ -115,8 +115,10 @@ char* format_time(const char* time) {
 			}
 			if (replacement) {
 				int len = strlen(replacement);
-				memcpy(formatted_time + pos, replacement, len);
-				pos += len;
+				if (pos + len < BUFFER_LENGTH) {
+					memcpy(formatted_time + pos, replacement, len);
+					pos += len;
+				}
 			}
 			i += 2;
 		}
