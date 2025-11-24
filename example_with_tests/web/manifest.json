@@ -1,6 +1,6 @@
 {
-    "name": "example_with_tests",
-    "short_name": "example_with_tests",
+    "name": "system_date_time_format_example_with_tests",
+    "short_name": "system_date_time_format_example_with_tests",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
