@@ -99,6 +99,10 @@ namespace system_date_time_format {
 
 		// Convert to UTF-8
 		int size = WideCharToMultiByte(CP_UTF8, 0, buffer, -1, nullptr, 0, nullptr, nullptr);
+		if (size == 0) {
+			delete[] buffer;
+			return "";
+		}
 		string result(size - 1, 0); // subtract 1 to remove the null terminator
 		int actual_size = WideCharToMultiByte(CP_UTF8, 0, buffer, -1, &result[0], size, nullptr, nullptr);
 		if (actual_size == 0) {
