@@ -1,10 +1,10 @@
 name: system_date_time_format_example_with_tests
 description: Demonstrates how to use the system_date_time_format plugin with tests.
-
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: ">=2.18.4 <4.0.0"
+  sdk: ^3.2.0
+  flutter: ^3.16.0
 
 dependencies:
   flutter:
@@ -15,7 +15,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   mocktail: ^1.0.4
 
 flutter:

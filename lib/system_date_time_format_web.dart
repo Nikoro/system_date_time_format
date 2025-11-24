@@ -1,5 +1,5 @@
 @JS()
-library system_date_time_format_web;
+library;
 
 import 'dart:js_interop';
 
