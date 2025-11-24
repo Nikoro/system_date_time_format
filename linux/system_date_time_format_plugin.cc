@@ -91,9 +91,10 @@ char* format_time(const char* time) {
 	char* formatted_time = (char*)malloc(BUFFER_LENGTH);
 	if (!formatted_time) return nullptr;
 	
+	const int MAX_REPLACEMENT_LENGTH = 10; // "hh:mm:ss a" is the longest
 	int pos = 0;
 	int i = 0;
-	while (time[i] != '\0' && pos < BUFFER_LENGTH - 15) {
+	while (time[i] != '\0' && pos < BUFFER_LENGTH - MAX_REPLACEMENT_LENGTH) {
 		if (time[i] == '%' && time[i + 1] != '\0') {
 			char specifier = time[i + 1];
 			const char* replacement = nullptr;
