@@ -6,7 +6,7 @@ issue_tracker: https://github.com/Nikoro/system_date_time_format/issues
 
 environment:
   sdk: ^3.2.0
-  flutter: ^3.16.0
+  flutter: ">=3.16.0"
 
 dependencies:
   flutter:
