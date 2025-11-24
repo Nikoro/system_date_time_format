@@ -1,6 +1,6 @@
 const getDateTimeFormatPattern = (options) => {
     const parts = new Intl.DateTimeFormat(void 0, options).formatToParts(new Date());
-    const hasDayPeriod = parts.some(part => part.type == "dayPeriod");
+    const hasDayPeriod = parts.some(part => part.type === "dayPeriod");
     return parts.map(part => {
         switch (part.type) {
             case "weekday": return "EEEE";
