@@ -18,8 +18,8 @@ const getDateTimeFormatPattern = (options) => {
     .join("");
 };
 
-const getDateFormat = () => getDateTimeFormatPattern({ dateStyle: "short" });
-const getMediumDateFormat = () => getDateTimeFormatPattern({ dateStyle: "medium" });
-const getLongDateFormat = () => getDateTimeFormatPattern({ dateStyle: "long" });
-const getFullDateFormat = () => getDateTimeFormatPattern({ dateStyle: "full" });
-const getTimeFormat = () => getDateTimeFormatPattern({ timeStyle: "short" });
+getDateFormat = () => getDateTimeFormatPattern({ dateStyle: "short" });
+getMediumDateFormat = () => getDateTimeFormatPattern({ dateStyle: "medium" });
+getLongDateFormat = () => getDateTimeFormatPattern({ dateStyle: "long" });
+getFullDateFormat = () => getDateTimeFormatPattern({ dateStyle: "full" });
+getTimeFormat = () => getDateTimeFormatPattern({ timeStyle: "short" });
