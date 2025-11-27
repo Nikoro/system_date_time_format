@@ -10,7 +10,7 @@
     <img alt="Pub Package" src="https://tinyurl.com/2na5mvwt">
   </a>
   <a href="https://github.com/Nikoro/system_date_time_format/actions">
-    <img alt="Build Status" src="https://github.com/Nikoro/system_date_time_format/actions/workflows/build.yaml/badge.svg">
+    <img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/Nikoro/system_date_time_format/ci.yaml?label=build">
   </a>
   <a href="https://codecov.io/gh/Nikoro/system_date_time_format">
     <img alt="Code Coverage" src="https://codecov.io/gh/Nikoro/system_date_time_format/branch/main/graph/badge.svg">
@@ -21,7 +21,7 @@
     <img alt="Android support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=android">
     <img alt="iOS support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=ios">
     <img alt="macOS support ✓" src="https://tinyurl.com/kka6pu4c">
-    <img alt="windows support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=windows">
+    <img alt="windows support ✓" src="https://tinyurl.com/3heeby4v">
     <img alt="linux support ✓" src="https://img.shields.io/badge/%E2%9C%93-grey?logo=linux">
     <img alt="web support ✓" src="https://img.shields.io/badge/web%20%E2%9C%93-grey">
 </p>

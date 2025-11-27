@@ -1,0 +1,77 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  publish:
+    permissions:
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+      - name: Get dependencies
+        run: flutter pub get
+      - name: Check code formatting
+        run: dart format --output=none --set-exit-if-changed .
+      - name: Static code analysis
+        run: flutter analyze --no-pub --no-congratulate
+      - name: Run unit tests
+        run: flutter test --no-pub --test-randomize-ordering-seed=random
+      
+      - name: Verify pubspec.yaml version matches tag
+        run: |
+          TAG=${GITHUB_REF#refs/tags/v}
+          PUBSPEC_VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+          if [ "$PUBSPEC_VERSION" != "$TAG" ]; then
+            echo "Error: pubspec.yaml version ($PUBSPEC_VERSION) does not match tag version ($TAG)"
+            exit 1
+          fi
+          echo "✓ Version validated: $PUBSPEC_VERSION"
+      
+      - name: Dry run publish
+        run: dart pub publish --dry-run
+
+      - name: Setup Dart SDK for OIDC authentication
+        uses: dart-lang/setup-dart@v1
+      
+      - name: Publish to pub.dev
+        run: dart pub publish --force
+  
+  release:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: get_version
+        run: |
+          TAG=${GITHUB_REF#refs/tags/v}
+          echo "version=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Extract changelog for version
+        id: changelog
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          # Extract changelog content for this version
+          awk "/## $VERSION/{flag=1; next} /^## /{flag=0} flag" CHANGELOG.md > release_notes.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref }}
+          name: Release v${{ steps.get_version.outputs.version }}
+          body_path: release_notes.md
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
