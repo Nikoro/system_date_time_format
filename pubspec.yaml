@@ -22,6 +22,9 @@ dev_dependencies:
   mocktail: ^1.0.4
 
 flutter:
+  assets:
+    - web/system_date_time_format.min.js
+
   plugin:
     platforms:
       android:

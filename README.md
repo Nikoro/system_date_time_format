@@ -171,10 +171,18 @@ class App extends HookWidget {
 
 ### Web
 
-In order to use this plugin on web app you need to add `system_date_time_format.js` script to your `index.html`:
+In order to use this plugin on web app you need to add `system_date_time_format.js` script to your `index.html`.
+
+**From version 1.3.1 and above**, the preferred way is to use the local asset:
 ```html
-<src="https://cdn.jsdelivr.net/gh/Nikoro/system_date_time_format@main/web/system_date_time_format.min.js"></script>
+<script src="./assets/packages/system_date_time_format/web/system_date_time_format.min.js"></script>
 ```
+
+Alternatively, you can still use the CDN link:
+```html
+<script src="https://cdn.jsdelivr.net/gh/Nikoro/system_date_time_format@main/web/system_date_time_format.min.js"></script>
+```
+
 index.html
 
 ```html
@@ -182,7 +190,7 @@ index.html
 <html>
 <head>
     <!--...-->
-    <src="https://cdn.jsdelivr.net/gh/Nikoro/system_date_time_format@main/web/system_date_time_format.min.js"></script>
+    <script src="./assets/packages/system_date_time_format/web/system_date_time_format.min.js"></script>
 </head>
 <body>
 <!--...-->
@@ -192,7 +200,7 @@ index.html
 
 ### Testing
 
-As the plugin class is not static, it is possible to mock and verify its behaviour when writing
+As the plugin class is not static, it is possible to mock and verify its behavior when writing
 tests as part of your application.  
 Check the source code
 of [example_with_tests](https://github.com/Nikoro/system_date_time_format/tree/main/example_with_tests)
