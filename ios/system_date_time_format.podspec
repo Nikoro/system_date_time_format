@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'system_date_time_format'
-  s.version          = '1.3.1'
+  s.version          = '1.4.0'
   s.summary          = 'A plugin for getting date and time format patterns from device system settings.'
   s.description      = <<-DESC
 A plugin for getting date and time format patterns from device system settings.

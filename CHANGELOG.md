@@ -1,6 +1,9 @@
+## 1.4.0
+
+- Added Swift Package Manager support for iOS and macOS platforms
+
 ## 1.3.1
 
-### Changed
 - Updated documentation to recommend using local web asset instead of CDN from v1.3.1+
 - Added web asset to pubspec.yaml for better offline support
 - Updated example projects to use local web asset
