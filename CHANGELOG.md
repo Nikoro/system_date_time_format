@@ -1,3 +1,11 @@
+## 1.3.1
+
+### Changed
+- Updated documentation to recommend using local web asset instead of CDN from v1.3.1+
+- Added web asset to pubspec.yaml for better offline support
+- Updated example projects to use local web asset
+- Excluded example directories from analyzer
+
 ## 1.3.0
 
 - **BREAKING**: Updated minimum Dart SDK to 3.2.0 (from 2.18.6) and Flutter SDK to 3.16.0 (from 2.5.0)
