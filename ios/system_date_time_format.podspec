@@ -4,18 +4,18 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'system_date_time_format'
-  s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin project.'
+  s.version          = '1.3.1'
+  s.summary          = 'A plugin for getting date and time format patterns from device system settings.'
   s.description      = <<-DESC
-A new Flutter plugin project.
+A plugin for getting date and time format patterns from device system settings.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/Nikoro/system_date_time_format'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Dominik Krajcer' => 'https://github.com/Nikoro' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
+  s.source_files = 'system_date_time_format/Sources/system_date_time_format/**/*.swift'
   s.dependency 'Flutter'
-  s.platform = :ios, '9.0'
+  s.platform = :ios, '12.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }

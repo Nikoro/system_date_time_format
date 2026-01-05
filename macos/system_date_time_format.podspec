@@ -4,20 +4,20 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'system_date_time_format'
-  s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin project.'
+  s.version          = '1.3.1'
+  s.summary          = 'A plugin for getting date and time format patterns from device system settings.'
   s.description      = <<-DESC
-A new Flutter plugin project.
+A plugin for getting date and time format patterns from device system settings.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/Nikoro/system_date_time_format'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Dominik Krajcer' => 'https://github.com/Nikoro' }
 
   s.source           = { :path => '.' }
-  s.source_files     = 'Classes/**/*'
+  s.source_files = 'system_date_time_format/Sources/system_date_time_format/**/*.swift'
   s.dependency 'FlutterMacOS'
 
-  s.platform = :osx, '10.11'
+  s.platform = :osx, '10.14'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 end

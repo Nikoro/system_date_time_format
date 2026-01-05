@@ -1,10 +1,10 @@
 import Flutter
 import UIKit
 
-public class SwiftSystemDateTimeFormatPlugin: NSObject, FlutterPlugin {
+public class SystemDateTimeFormatPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "system_date_time_format", binaryMessenger: registrar.messenger())
-    let instance = SwiftSystemDateTimeFormatPlugin()
+    let instance = SystemDateTimeFormatPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
