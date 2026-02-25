@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="example_with_tests"
+        android:label="system_date_time_format_example_with_tests"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
