@@ -11,11 +11,15 @@ let package = Package(
     products: [
         .library(name: "system-date-time-format", targets: ["system_date_time_format"])
     ],
-    dependencies: [],
+    dependencies: [
+        .package(name: "FlutterFramework", path: "../FlutterFramework")
+    ],
     targets: [
         .target(
             name: "system_date_time_format",
-            dependencies: [],
+            dependencies: [
+                .product(name: "FlutterFramework", package: "FlutterFramework")
+            ],
             resources: []
         )
     ]
