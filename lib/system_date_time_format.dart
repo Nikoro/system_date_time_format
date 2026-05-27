@@ -22,8 +22,8 @@ class SystemDateTimeFormat {
   /// Available on iOS, macOS, android, web, windows and linux
   /// May throw [PlatformException] from [MethodChannel].
   Future<String?> getDatePattern() async {
-    final pattern =
-        await SystemDateTimeFormatPlatformInterface.instance.getDatePattern();
+    final pattern = await SystemDateTimeFormatPlatformInterface.instance
+        .getDatePattern();
     return pattern.isNullOrEmpty ? null : pattern;
   }
 
@@ -58,8 +58,8 @@ class SystemDateTimeFormat {
   /// Available on iOS, macOS, android, web, windows and linux
   /// May throw [PlatformException] from [MethodChannel].
   Future<String?> getTimePattern() async {
-    final pattern =
-        await SystemDateTimeFormatPlatformInterface.instance.getTimePattern();
+    final pattern = await SystemDateTimeFormatPlatformInterface.instance
+        .getTimePattern();
     return pattern.isNullOrEmpty ? null : pattern;
   }
 
@@ -76,8 +76,8 @@ class SystemDateTimeFormat {
   }
 
   static Patterns of(BuildContext context) {
-    final scope =
-        context.dependOnInheritedWidgetOfExactType<SDTFScopeInherited>();
+    final scope = context
+        .dependOnInheritedWidgetOfExactType<SDTFScopeInherited>();
     if (scope == null) {
       throw SDTFScopeNotFoundError(context.widget.runtimeType);
     }

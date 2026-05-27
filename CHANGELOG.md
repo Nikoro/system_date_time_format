@@ -1,3 +1,9 @@
+## [1.5.0] - 2026-05-27
+
+### Added
+
+- Migrated platform build configurations to current Flutter tooling.
+
 ## 1.4.0
 
 - Added Swift Package Manager support for iOS and macOS platforms

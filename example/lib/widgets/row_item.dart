@@ -12,10 +12,7 @@ class RowItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          BoldText(title),
-          Text(value),
-        ],
+        children: [BoldText(title), Text(value)],
       ),
     );
   }

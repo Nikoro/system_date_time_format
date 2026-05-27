@@ -36,10 +36,7 @@ class _SDTFScopeState extends State<SDTFScope> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return SDTFScopeInherited(
-      patterns: patterns,
-      child: widget.child,
-    );
+    return SDTFScopeInherited(patterns: patterns, child: widget.child);
   }
 
   @override

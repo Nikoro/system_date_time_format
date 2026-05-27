@@ -17,8 +17,9 @@ void main() {
   });
 
   group('SDTFScope', () {
-    testWidgets('returns all patterns from system_date_time_format plugin',
-        (tester) async {
+    testWidgets('returns all patterns from system_date_time_format plugin', (
+      tester,
+    ) async {
       await tester.setupWidget(
         SDTFScope(format: mockSDTFormat, child: const TestWidget()),
       );
@@ -43,27 +44,30 @@ void main() {
     });
 
     testWidgets(
-        'returns all new different patterns from system_date_time_format plugin when patterns changed on resume',
-        (tester) async {
-      await tester.setupWidget(
-        SDTFScope(format: mockSDTFormat, child: const TestWidget()),
-      );
-      await tester.pump();
+      'returns all new different patterns from system_date_time_format plugin when patterns changed on resume',
+      (tester) async {
+        await tester.setupWidget(
+          SDTFScope(format: mockSDTFormat, child: const TestWidget()),
+        );
+        await tester.pump();
 
-      expect(find.text(Stubs.datePattern), findsOneWidget);
-      expect(find.text(Stubs.mediumDatePattern), findsOneWidget);
-      expect(find.text(Stubs.longDatePattern), findsOneWidget);
-      expect(find.text(Stubs.fullDatePattern), findsOneWidget);
-      expect(find.text(Stubs.timePattern), findsOneWidget);
+        expect(find.text(Stubs.datePattern), findsOneWidget);
+        expect(find.text(Stubs.mediumDatePattern), findsOneWidget);
+        expect(find.text(Stubs.longDatePattern), findsOneWidget);
+        expect(find.text(Stubs.fullDatePattern), findsOneWidget);
+        expect(find.text(Stubs.timePattern), findsOneWidget);
 
-      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
-      await tester.pumpAndSettle();
+        tester.binding.handleAppLifecycleStateChanged(
+          AppLifecycleState.resumed,
+        );
+        await tester.pumpAndSettle();
 
-      expect(find.text(Stubs.differentDatePattern), findsOneWidget);
-      expect(find.text(Stubs.differentMediumDatePattern), findsOneWidget);
-      expect(find.text(Stubs.differentLongDatePattern), findsOneWidget);
-      expect(find.text(Stubs.differentFullDatePattern), findsOneWidget);
-      expect(find.text(Stubs.differentTimePattern), findsOneWidget);
-    });
+        expect(find.text(Stubs.differentDatePattern), findsOneWidget);
+        expect(find.text(Stubs.differentMediumDatePattern), findsOneWidget);
+        expect(find.text(Stubs.differentLongDatePattern), findsOneWidget);
+        expect(find.text(Stubs.differentFullDatePattern), findsOneWidget);
+        expect(find.text(Stubs.differentTimePattern), findsOneWidget);
+      },
+    );
   });
 }

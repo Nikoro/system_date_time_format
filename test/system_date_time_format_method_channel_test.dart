@@ -26,14 +26,16 @@ void main() {
       final function = input.first as Future<String?> Function();
       final expectedValue = input.second as String;
 
-      test('${function.name}() returns correct format: [$expectedValue]',
-          () async {
-        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-            .setMockMethodCallHandler(channel, (_) async => expectedValue);
+      test(
+        '${function.name}() returns correct format: [$expectedValue]',
+        () async {
+          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+              .setMockMethodCallHandler(channel, (_) async => expectedValue);
 
-        final result = await function();
-        expect(result, expectedValue);
-      });
+          final result = await function();
+          expect(result, expectedValue);
+        },
+      );
     });
   });
 }

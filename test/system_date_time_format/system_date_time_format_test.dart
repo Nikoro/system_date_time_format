@@ -11,16 +11,21 @@ void main() {
   setUpAll(() {
     final platform = MockSystemDateTimeFormatPlatform();
 
-    when(() => platform.getDatePattern())
-        .thenAnswer((_) async => Stubs.datePattern);
-    when(() => platform.getMediumDatePattern())
-        .thenAnswer((_) async => Stubs.mediumDatePattern);
-    when(() => platform.getLongDatePattern())
-        .thenAnswer((_) async => Stubs.longDatePattern);
-    when(() => platform.getFullDatePattern())
-        .thenAnswer((_) async => Stubs.fullDatePattern);
-    when(() => platform.getTimePattern())
-        .thenAnswer((_) async => Stubs.timePattern);
+    when(
+      () => platform.getDatePattern(),
+    ).thenAnswer((_) async => Stubs.datePattern);
+    when(
+      () => platform.getMediumDatePattern(),
+    ).thenAnswer((_) async => Stubs.mediumDatePattern);
+    when(
+      () => platform.getLongDatePattern(),
+    ).thenAnswer((_) async => Stubs.longDatePattern);
+    when(
+      () => platform.getFullDatePattern(),
+    ).thenAnswer((_) async => Stubs.fullDatePattern);
+    when(
+      () => platform.getTimePattern(),
+    ).thenAnswer((_) async => Stubs.timePattern);
 
     SystemDateTimeFormatPlatformInterface.instance = platform;
   });
@@ -43,11 +48,13 @@ void main() {
       final function = input.first as Future<String?> Function();
       final expectedValue = input.second as String;
 
-      test('${function.name}() returns correct pattern: [$expectedValue]',
-          () async {
-        final result = await function();
-        expect(result, expectedValue);
-      });
+      test(
+        '${function.name}() returns correct pattern: [$expectedValue]',
+        () async {
+          final result = await function();
+          expect(result, expectedValue);
+        },
+      );
     });
 
     test('getAllPatterns() returns correct patterns', () async {
@@ -55,16 +62,21 @@ void main() {
       expect(patterns, Stubs.allPatterns);
     });
 
-    testWidgets('of() throws SDTFScopeNotFoundError when there is NO SDTFScope',
-        (tester) async {
-      await tester.pumpWidget(const Placeholder());
-      final context = tester.element(find.byType(Placeholder));
-      expect(() => SystemDateTimeFormat.of(context),
-          throwsA(isA<SDTFScopeNotFoundError>()));
-    });
+    testWidgets(
+      'of() throws SDTFScopeNotFoundError when there is NO SDTFScope',
+      (tester) async {
+        await tester.pumpWidget(const Placeholder());
+        final context = tester.element(find.byType(Placeholder));
+        expect(
+          () => SystemDateTimeFormat.of(context),
+          throwsA(isA<SDTFScopeNotFoundError>()),
+        );
+      },
+    );
 
-    testWidgets('of() returns Patterns when there is SDTFScope',
-        (tester) async {
+    testWidgets('of() returns Patterns when there is SDTFScope', (
+      tester,
+    ) async {
       await tester.pumpWidget(const SDTFScope(child: Placeholder()));
       await tester.pump();
       final context = tester.element(find.byType(Placeholder));
