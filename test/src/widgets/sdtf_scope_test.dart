@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -67,6 +69,59 @@ void main() {
         expect(find.text(Stubs.differentLongDatePattern), findsOneWidget);
         expect(find.text(Stubs.differentFullDatePattern), findsOneWidget);
         expect(find.text(Stubs.differentTimePattern), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      'does not update state when disposed before initial getAllPatterns() completes',
+      (tester) async {
+        final result = Completer<Patterns>();
+        when(
+          () => mockSDTFormat.getAllPatterns(),
+        ).thenAnswer((_) => result.future);
+
+        await tester.pumpWidget(
+          SDTFScope(format: mockSDTFormat, child: const Placeholder()),
+        );
+
+        // Dispose SDTFScope while getAllPatterns() is still pending.
+        await tester.pumpWidget(const SizedBox.shrink());
+
+        result.complete(Stubs.allPatterns);
+        await tester.pump();
+
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      'does not update state when disposed before getAllPatterns() completes on resume',
+      (tester) async {
+        final initial = Completer<Patterns>();
+        final onResume = Completer<Patterns>();
+        when(() => mockSDTFormat.getAllPatterns()).thenAnswerMany([
+          (_) => initial.future,
+          (_) => onResume.future,
+        ]);
+
+        await tester.pumpWidget(
+          SDTFScope(format: mockSDTFormat, child: const Placeholder()),
+        );
+        initial.complete(Stubs.allPatterns);
+        await tester.pump();
+
+        tester.binding.handleAppLifecycleStateChanged(
+          AppLifecycleState.resumed,
+        );
+        await tester.pump();
+
+        // Dispose SDTFScope while the resume request is still pending.
+        await tester.pumpWidget(const SizedBox.shrink());
+
+        onResume.complete(Stubs.allDifferentPatterns);
+        await tester.pump();
+
+        expect(tester.takeException(), isNull);
       },
     );
   });

@@ -48,8 +48,8 @@ class _SDTFScopeState extends State<SDTFScope> with WidgetsBindingObserver {
 
   Future<void> _updatePatternsIfNeeded() async {
     final patterns = await systemDateTimeFormat.getAllPatterns();
-    if (this.patterns != patterns) {
-      setState(() => this.patterns = patterns);
-    }
+    if (!mounted || this.patterns == patterns) return;
+
+    setState(() => this.patterns = patterns);
   }
 }
