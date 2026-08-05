@@ -118,9 +118,29 @@ Allow the user to request edits to the CHANGELOG content before proceeding.
 
 3. **`CHANGELOG.md`**: Insert the new version section at the top of the file, directly after the `# Changelog` heading. Preserve all existing content below.
 
+4. **Example `pubspec.lock` files**: The example projects depend on the plugin via a relative path (`path: ".."`), so their lockfiles pin the plugin version and go stale after every bump. Regenerate them so they point at the new version immediately.
+
+   Run `flutter pub get` in **each** example directory (currently `example/` and `example_with_tests/` — discover them dynamically rather than hardcoding, e.g. any directory with a `pubspec.yaml` that depends on the plugin by path):
+
+   ```bash
+   (cd example && flutter pub get)
+   (cd example_with_tests && flutter pub get)
+   ```
+
+   Then verify and clean up:
+
+   - Confirm each lockfile diff is **only** the `system_date_time_format` `version:` line changing to `X.Y.Z`. If `pub get` also bumped unrelated transitive dependencies, revert those — a release commit should not smuggle in dependency upgrades.
+   - **`flutter pub get` may regenerate CocoaPods artifacts** (`ios/Podfile`, `macos/Podfile`, and `#include?` lines in `ios/Flutter/*.xcconfig` and `macos/Flutter/Flutter-*.xcconfig`). This repo migrated to Swift Package Manager and does **not** track Podfiles, so discard them:
+     ```bash
+     git checkout -- '*.xcconfig'
+     rm -f example/ios/Podfile example/macos/Podfile \
+           example_with_tests/ios/Podfile example_with_tests/macos/Podfile
+     ```
+   - Re-run `git status --short` and confirm only the two `pubspec.lock` files remain modified (plus the files from steps 1–3).
+
 ## Step 8: Commit & Tag
 
-1. Stage changes: `git add pubspec.yaml README.md CHANGELOG.md`
+1. Stage changes: `git add pubspec.yaml README.md CHANGELOG.md example/pubspec.lock example_with_tests/pubspec.lock`
 2. Create commit:
    ```
    git commit -m "chore(release): bump version to X.Y.Z"
