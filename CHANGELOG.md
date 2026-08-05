@@ -1,3 +1,9 @@
+## [1.5.1] - 2026-08-05
+
+### Fixed
+
+- Fixed `SDTFScope` throwing an unhandled exception when it was disposed while a pending date/time format request was still in flight.
+
 ## [1.5.0] - 2026-05-27
 
 ### Added
