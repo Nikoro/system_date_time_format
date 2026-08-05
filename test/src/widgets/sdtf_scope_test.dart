@@ -99,10 +99,9 @@ void main() {
       (tester) async {
         final initial = Completer<Patterns>();
         final onResume = Completer<Patterns>();
-        when(() => mockSDTFormat.getAllPatterns()).thenAnswerMany([
-          (_) => initial.future,
-          (_) => onResume.future,
-        ]);
+        when(
+          () => mockSDTFormat.getAllPatterns(),
+        ).thenAnswerMany([(_) => initial.future, (_) => onResume.future]);
 
         await tester.pumpWidget(
           SDTFScope(format: mockSDTFormat, child: const Placeholder()),
