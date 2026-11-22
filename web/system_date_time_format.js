@@ -24,14 +24,19 @@ function getDateTimeFormatPattern(options) {
         // Weekdays and eras also need the context of the whole date.
         const context = type === "month" ? { day: "numeric" } :
             { year: "numeric", month: "long", day: "numeric" };
-        for (const width of widths) {
-            const candidate = new Intl.DateTimeFormat(locale, {
-                calendar, numberingSystem, timeZone: "UTC", ...context, [type]: width,
-            });
-            if (patternProbes.every((date, i) =>
-                candidate.formatToParts(date).find(part => part.type === type)?.value ===
-                samples[i].find(part => part.type === type)?.value)) {
-                return symbol.repeat({ short: 3, long: 4, narrow: 5 }[width]);
+        // Some ICU versions use the standalone weekday in the full style but
+        // inflect it when the same date fields are requested individually.
+        const contexts = type === "weekday" ? [context, {}] : [context];
+        for (const fields of contexts) {
+            for (const width of widths) {
+                const candidate = new Intl.DateTimeFormat(locale, {
+                    calendar, numberingSystem, timeZone: "UTC", ...fields, [type]: width,
+                });
+                if (patternProbes.every((date, i) =>
+                    candidate.formatToParts(date).find(part => part.type === type)?.value ===
+                    samples[i].find(part => part.type === type)?.value)) {
+                    return symbol.repeat({ short: 3, long: 4, narrow: 5 }[width]);
+                }
             }
         }
         return null;
