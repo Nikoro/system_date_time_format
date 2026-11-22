@@ -4,3 +4,8 @@ analyzer:
   exclude:
     - example/**
     - example_with_tests/**
+    - build/**
+    - android/**
+    - ios/**
+    - macos/**
+    - linux/**
