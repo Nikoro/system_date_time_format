@@ -9,8 +9,11 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Install lcov
-        run: sudo apt-get install -y lcov
+      - name: Install Linux build and test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lcov libicu-dev locales
+          sudo locale-gen pl_PL.UTF-8 es_ES.UTF-8
       - name: Checkout the code
         uses: actions/checkout@v4
       - name: Set up Flutter
@@ -21,8 +24,18 @@ jobs:
         run: dart format --output=none --set-exit-if-changed .
       - name: Static code analysis
         run: flutter analyze --no-pub --no-congratulate
+      - name: Check Linux patterns under multiple LC_TIME settings
+        run: |
+          cc -std=c11 -Wall -Wextra -Werror test/native/linux_patterns_test.c src/patterns.c src/patterns_linux.c -licui18n -licuuc -o "$RUNNER_TEMP/linux_patterns_test"
+          "$RUNNER_TEMP/linux_patterns_test"
       - name: Run unit tests
         run: make test
+      - name: Test the example with an injected device format reader
+        working-directory: example_with_tests
+        run: |
+          flutter pub get
+          flutter analyze --no-pub
+          flutter test --no-pub
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.1.0
         with:

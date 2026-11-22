@@ -4,15 +4,29 @@ version: 1.5.1
 repository: https://github.com/Nikoro/system_date_time_format
 issue_tracker: https://github.com/Nikoro/system_date_time_format/issues
 
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
 environment:
   sdk: ^3.12.0
   flutter: ">=3.44.0"
 
 dependencies:
+  code_assets: ">=1.0.0 <3.0.0"
+  ffi: ^2.2.0
   flutter:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
+  hooks: ">=1.0.0 <3.0.0"
+  jni: ^1.1.2
+  jni_flutter: ^1.0.4+1
+  native_toolchain_c: ">=0.17.6 <0.20.0"
   plugin_platform_interface: ^2.1.8
 
 dev_dependencies:
@@ -27,17 +41,6 @@ flutter:
 
   plugin:
     platforms:
-      android:
-        package: com.dominikkrajcer.system_date_time_format
-        pluginClass: SystemDateTimeFormatPlugin
-      ios:
-        pluginClass: SystemDateTimeFormatPlugin
-      linux:
-        pluginClass: SystemDateTimeFormatPlugin
-      macos:
-        pluginClass: SystemDateTimeFormatPlugin
-      windows:
-        pluginClass: SystemDateTimeFormatPluginCApi
       web:
         pluginClass: SystemDateTimeFormatWeb
         fileName: system_date_time_format_web.dart

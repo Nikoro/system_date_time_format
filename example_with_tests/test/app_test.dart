@@ -1,37 +1,48 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:system_date_time_format/system_date_time_format.dart';
+import 'package:system_date_time_format_example_with_tests/device_formats.dart';
+import 'package:system_date_time_format_example_with_tests/fallbacks.dart';
 import 'package:system_date_time_format_example_with_tests/main.dart';
 import 'package:system_date_time_format_example_with_tests/widgets/widgets.dart';
 
-import '_tools/tools.dart';
+class MockDeviceFormats extends Mock implements DeviceFormats {}
 
 void main() {
-  late MockSystemDateTimeFormat mockSDTFormat;
+  testWidgets('displays each supplied pattern under its own label', (
+    tester,
+  ) async {
+    final formats = MockDeviceFormats();
+    when(() => formats.shortDate).thenReturn('dd.MM.yy');
+    when(() => formats.mediumDate).thenReturn('dd MMM y');
+    when(() => formats.longDate).thenReturn('d MMMM y');
+    when(() => formats.fullDate).thenReturn('EEEE, d MMMM y');
+    when(() => formats.time).thenReturn('HH:mm');
 
-  setUp(() {
-    mockSDTFormat = MockSystemDateTimeFormat();
-    when(
-      () => mockSDTFormat.getAllPatterns(),
-    ).thenAnswer((_) async => Stubs.allPatterns);
+    await tester.pumpWidget(App(formats: formats));
+
+    final rows = tester.widgetList<RowItem>(find.byType(RowItem));
+    expect(
+      {for (final row in rows) row.title: row.value},
+      {
+        'Short date format pattern:': 'dd.MM.yy',
+        'Medium date format pattern:': 'dd MMM y',
+        'Long date format pattern:': 'd MMMM y',
+        'Full date format pattern:': 'EEEE, d MMMM y',
+        'Time format pattern:': 'HH:mm',
+      },
+    );
   });
 
-  testWidgets(
-    'App displays 5 RowItems with correct Date & Time format patterns',
-    (tester) async {
-      await tester.pumpWidget(
-        SDTFScope(format: mockSDTFormat, child: const App()),
-      );
-      await tester.pump();
+  testWidgets('uses fallbacks for unavailable date styles', (tester) async {
+    final formats = MockDeviceFormats();
+    when(() => formats.mediumDate).thenReturn(null);
+    when(() => formats.fullDate).thenReturn(null);
+    when(() => formats.time).thenReturn('HH:mm');
 
-      final rowItems = tester.widgetListByType<RowItem>();
+    await tester.pumpWidget(App(formats: formats));
 
-      expect(rowItems.length, 5);
-      expect(rowItems[0].value, Stubs.datePattern);
-      expect(rowItems[1].value, Stubs.mediumDatePattern);
-      expect(rowItems[2].value, Stubs.longDatePattern);
-      expect(rowItems[3].value, Stubs.fullDatePattern);
-      expect(rowItems[4].value, Stubs.timePattern);
-    },
-  );
+    expect(find.text(Fallbacks.mediumDatePattern), findsOneWidget);
+    expect(find.text(Fallbacks.fullDatePattern), findsOneWidget);
+    expect(find.text('HH:mm'), findsOneWidget);
+  });
 }

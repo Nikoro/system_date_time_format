@@ -1,3 +1,45 @@
+## Unreleased
+
+### Changed
+
+- **Breaking:** Date and time formats are available through synchronous static getters such as `SystemDateTimeFormat.datePattern`.
+- **Breaking:** Removed the `SystemDateTimeFormat` constructor, the asynchronous methods, `Patterns`, `SDTFScope`, and `SystemDateTimeFormat.of(context)`.
+- Regenerated both example apps with the Flutter 3.50 template.
+
+### Fixed
+
+- Web patterns no longer change with the current day, month, or time. Date styles preserve numeric padding, abbreviated and full month names, and quoted literal words.
+- Linux `longDatePattern` now returns the ICU long date for the active `LC_TIME` locale. Linux builds require ICU development headers and libraries (`libicu-dev` on Debian and Ubuntu).
+- Windows converts weekday and day-period fields to Dart `intl` syntax while preserving quoted text and escaped apostrophes.
+
+### Migrating an app from 1.x
+
+1. **Find callers and tests.** Run the search below from the consuming repository root. Include local packages, dependency injection registrations, handwritten mocks and mock generator annotations. Use the Dart analyzer to catch references through import aliases and re-exports.
+
+   ```sh
+   rg -n --type dart 'system_date_time_format|SystemDateTimeFormat|SDTFScope|\bPatterns\b|getAllPatterns|get(MediumDate|LongDate|FullDate|Date|Time)Pattern'
+   ```
+
+2. **Replace each read.** All five getters return `String?` synchronously. Keep application fallbacks and null checks. The medium and full date styles return `null` on Windows and Linux.
+
+   | 1.x instance method | New static getter |
+   | --- | --- |
+   | `getDatePattern()` | `SystemDateTimeFormat.datePattern` |
+   | `getMediumDatePattern()` | `SystemDateTimeFormat.mediumDatePattern` |
+   | `getLongDatePattern()` | `SystemDateTimeFormat.longDatePattern` |
+   | `getFullDatePattern()` | `SystemDateTimeFormat.fullDatePattern` |
+   | `getTimePattern()` | `SystemDateTimeFormat.timePattern` |
+
+   For example, `(await format.getAllPatterns()).timePattern ?? fallback` becomes `SystemDateTimeFormat.timePattern ?? fallback`. Read each required field once into a local variable if the old code reused the result.
+
+3. **Remove obsolete plumbing.** Remove the plugin constructor, `getAllPatterns()`, and uses of the package's `Patterns` type. Replace `SystemDateTimeFormat.of(context).datePattern` with `SystemDateTimeFormat.datePattern` and unwrap `SDTFScope(child: app)` to `app`. Remove `await`, `.then(...)`, `FutureBuilder` or a surrounding `async` only where it existed solely for these reads. Preserve asynchronous contracts that other callers still depend on.
+
+4. **Preserve any refresh behavior your screen needs.** The old scope refreshed its descendants on app resume. A static getter reads current settings when called. For a visible screen that must refresh after a settings change, rebuild it on resume (for example with a state-owned `AppLifecycleListener` whose `onResume` calls `setState`). Read the getter in `build` and dispose the listener in `dispose`.
+
+5. **Move test doubles to the consumer.** Replace mocks of `SystemDateTimeFormat` and mock method-channel handlers with injected values, callbacks, or an app-owned reader. Stub synchronous answers on that reader, for example `when(() => formats.time).thenReturn('HH:mm')`. Check both a known pattern and a `null` fallback. Regenerate generated mocks if your project uses them. [Working widget test](example_with_tests/test/app_test.dart)
+
+6. **Verify the migration.** Use the intended package release or local path in the consuming app, run `flutter pub get`, `flutter analyze` and `flutter test`, and build the targets the app ships. For Linux, install the ICU development package on the builder and include the matching ICU runtime dependency when distributing the app. For web, keep the package's JavaScript asset loaded before Flutter starts. If the app previously used scope-based refresh, change the device's clock preference, return to the app, and verify that the visible time format updates.
+
 ## [1.5.1] - 2026-08-05
 
 ### Fixed

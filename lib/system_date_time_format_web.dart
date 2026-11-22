@@ -7,19 +7,19 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:system_date_time_format/src/system_date_time_format_platform_interface.dart';
 
 @JS('getDateFormat')
-external String _getDateFormat();
+external String? _getDateFormat();
 
 @JS('getMediumDateFormat')
-external String _getMediumDateFormat();
+external String? _getMediumDateFormat();
 
 @JS('getLongDateFormat')
-external String _getLongDateFormat();
+external String? _getLongDateFormat();
 
 @JS('getFullDateFormat')
-external String _getFullDateFormat();
+external String? _getFullDateFormat();
 
 @JS('getTimeFormat')
-external String _getTimeFormat();
+external String? _getTimeFormat();
 
 /// A web implementation of the SystemDateTimeFormatPlatformInterface of the SystemDateTimeFormat plugin.
 class SystemDateTimeFormatWeb extends SystemDateTimeFormatPlatformInterface {
@@ -32,31 +32,31 @@ class SystemDateTimeFormatWeb extends SystemDateTimeFormatPlatformInterface {
 
   /// Returns a short version of date format.
   @override
-  Future<String> getDatePattern() async {
+  String? getDatePattern() {
     return _getDateFormat();
   }
 
   /// Returns a medium version of date format.
   @override
-  Future<String> getMediumDatePattern() async {
+  String? getMediumDatePattern() {
     return _getMediumDateFormat();
   }
 
   /// Returns a long version of date format.
   @override
-  Future<String> getLongDatePattern() async {
+  String? getLongDatePattern() {
     return _getLongDateFormat();
   }
 
   /// Returns a full version of date format.
   @override
-  Future<String> getFullDatePattern() async {
+  String? getFullDatePattern() {
     return _getFullDateFormat();
   }
 
   /// Returns time format.
   @override
-  Future<String> getTimePattern() async {
+  String? getTimePattern() {
     return _getTimeFormat();
   }
 }

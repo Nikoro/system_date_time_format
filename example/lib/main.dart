@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:system_date_time_format/system_date_time_format.dart';
 import 'package:system_date_time_format_example/fallbacks.dart';
 import 'package:system_date_time_format_example/widgets/widgets.dart';
 
 void main() {
-  runApp(const SDTFScope(child: App()));
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
@@ -12,16 +12,16 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final patterns = SystemDateTimeFormat.of(context);
-
-    final datePattern = patterns.datePattern ?? Fallbacks.datePattern;
+    final datePattern =
+        SystemDateTimeFormat.datePattern ?? Fallbacks.datePattern;
     final mediumDatePattern =
-        patterns.mediumDatePattern ?? Fallbacks.mediumDatePattern;
+        SystemDateTimeFormat.mediumDatePattern ?? Fallbacks.mediumDatePattern;
     final longDatePattern =
-        patterns.longDatePattern ?? Fallbacks.longDatePattern;
+        SystemDateTimeFormat.longDatePattern ?? Fallbacks.longDatePattern;
     final fullDatePattern =
-        patterns.fullDatePattern ?? Fallbacks.fullDatePattern;
-    final timePattern = patterns.timePattern ?? Fallbacks.timePattern;
+        SystemDateTimeFormat.fullDatePattern ?? Fallbacks.fullDatePattern;
+    final timePattern =
+        SystemDateTimeFormat.timePattern ?? Fallbacks.timePattern;
 
     final rows = {
       'Short date format pattern:': datePattern,

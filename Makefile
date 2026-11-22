@@ -5,11 +5,12 @@ help:
 
 
 test: ## Run all tests with coverage
+	@node --test test/web/patterns.test.cjs
 	@flutter test --no-pub --coverage --test-randomize-ordering-seed=random
-	@lcov --remove coverage/lcov.info "lib/src/system_date_time_format_platform_interface.dart" \
+	@lcov --no-function-coverage --remove coverage/lcov.info "lib/src/system_date_time_format_platform_interface.dart" \
 	-o coverage/lcov.info
 
 test-report: test ## Run all tests with html coverage report
 	@echo "Generating html report..."
-	@genhtml coverage/lcov.info -o coverage/html
+	@genhtml --no-function-coverage coverage/lcov.info -o coverage/html
 	@open coverage/html/index.html

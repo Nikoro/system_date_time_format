@@ -34,13 +34,9 @@ settings out of the box. However, you can use the `system_date_time_format` plug
 date and time format patterns for consistent formatting in your Flutter app with ease:
 
 ```dart
-final datePattern = await SystemDateTimeFormat().getDatePattern();
+final datePattern = SystemDateTimeFormat.datePattern;
 print(datePattern); // e.g. "M/d/yy"
 ```
-
-### Do you use [flutter_hooks](https://pub.dev/packages/flutter_hooks) in the project?
-
-Consider using: [`system_date_time_format_hook`](https://pub.dev/packages/system_date_time_format_hook) instead.
 
 ### Examples
 | iOS (Region: United States 🇺🇸)                                                                                 | Result                                                                                                        |
@@ -69,109 +65,35 @@ Consider using: [`system_date_time_format_hook`](https://pub.dev/packages/system
 
 ## Usage
 
-Import `import 'package:system_date_time_format/system_date_time_format.dart';`,   
-and use getters to get date & time format patterns from device system.
-
-Example:
+Read a pattern directly from the current system settings. Medium and full date patterns return `null` on Windows and Linux.
 
 ```dart
 import 'package:system_date_time_format/system_date_time_format.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  
-  final format = SystemDateTimeFormat();
-
-  final datePattern = await format.getDatePattern();
-  final mediumDatePattern = await format.getMediumDatePattern(); // Not on Windows & Linux
-  final longDatePattern = await format.getLongDatePattern();
-  final fullDatePattern = await format.getFullDatePattern();     // Not on Windows & Linux
-  final timePattern = await format.getTimePattern();
-
-  print(datePattern); // e.g. "M/d/yy"
-  print(mediumDatePattern); // e.g. "MMM d,y"
-  print(longDatePattern); // e.g. "MMMM d,y"
-  print(fullDatePattern); // e.g. "EEEE, MMMM d, y"
-  print(timePattern); // e.g. "HH:mm"
-}
-```
-
-### SDTFScope
-You can use raw async getters like in the example above (and handle asynchronus operations by yourself) or 
-you can use convenient `SDTFScope` widget for handling these for you.
-
-Simply wrap your root widget in `SDTFScope`:
-```dart
 void main() {
-  runApp(const SDTFScope(child: App()));
+  final date = SystemDateTimeFormat.datePattern;             // e.g. "M/d/yy"
+  final mediumDate = SystemDateTimeFormat.mediumDatePattern; // e.g. "MMM d, y"
+  final longDate = SystemDateTimeFormat.longDatePattern;     // e.g. "MMMM d, y"
+  final fullDate = SystemDateTimeFormat.fullDatePattern;     // e.g. "EEEE, MMMM d, y"
+  final time = SystemDateTimeFormat.timePattern;             // e.g. "HH:mm"
 }
 ```
-then you can get the date & time patterns down in the widget tree using BuildContext:
-```dart
-final patterns = SystemDateTimeFormat.of(context);
-```
-Example:
-```dart
-class App extends StatelessWidget {
-  const App({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    final patterns = SystemDateTimeFormat.of(context);
+### Migrating from 1.x
 
-    final datePattern = patterns.datePattern;
-    final timePattern = patterns.timePattern;
+See the [step-by-step migration guide](CHANGELOG.md#migrating-an-app-from-1x).
 
-    print(datePattern); // e.g. "M/d/yy"
-    print(timePattern); // e.g. "HH:mm"
+Replace `await SystemDateTimeFormat().getDatePattern()` with `SystemDateTimeFormat.datePattern`. The other format methods follow the same naming convention. Replace calls to `getAllPatterns()` and `SystemDateTimeFormat.of(context)` with the individual getters you need. Remove the `SDTFScope` wrapper.
 
-    return const MaterialApp(
-      home: Scaffold(),
-    );
-  }
-}
-```
-> **Note**
->
-> `SDTFScope` will automatically sync date & time format patterns even if user changes them 
-> in the device system settings while your app is running.
+Each getter reads the current settings synchronously. A widget that reads patterns in `build()` picks up changes on its next rebuild.
 
-### [Flutter hooks](https://pub.dev/packages/flutter_hooks)
-You can use `SDTFScope` as shown in the example above. However, if you already know and use [flutter_hooks](https://pub.dev/packages/flutter_hooks)
-in your project you can use [`system_date_time_format_hook`](https://pub.dev/packages/system_date_time_format_hook) instead, to achieve a similar effect:
+### Linux
 
-Example:
-```dart
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:system_date_time_format_hook/system_date_time_format_hook.dart';
-
-class App extends HookWidget {
-  const App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final patterns = useSystemDateTimeFormat();
-
-    final datePattern = patterns.datePattern;
-    final timePattern = patterns.timePattern;
-
-    print(datePattern); // e.g. "M/d/yy"
-    print(timePattern); // e.g. "HH:mm"
-
-    return const MaterialApp(
-      home: Scaffold(),
-    );
-  }
-}
-```
-> **Note**
->
-> [`system_date_time_format_hook`](https://pub.dev/packages/system_date_time_format_hook) will automatically sync date & time format patterns even if user changes them
-> in the device system settings while your app is running.
+Linux reads short date and time patterns from the active `LC_TIME` locale. For the long date, it uses the ICU date-only style for that locale. Install the ICU development package on the Linux build machine (for example, `sudo apt install libicu-dev` on Ubuntu or Debian). The application requires the matching ICU runtime libraries.
 
 ### Web
 
-In order to use this plugin on web app you need to add `system_date_time_format.js` script to your `index.html`.
+Web getters use the browser’s locale and hour cycle. A getter returns `null` when the browser reports a field that has no matching pattern, such as a named year in the Chinese calendar. Load the JavaScript asset in `index.html` before Flutter starts.
 
 **From version 1.3.1 and above**, the preferred way is to use the local asset:
 ```html
@@ -200,10 +122,13 @@ index.html
 
 ### Testing
 
-As the plugin class is not static, it is possible to mock and verify its behavior when writing
-tests as part of your application.  
-Check the source code
-of [example_with_tests](https://github.com/Nikoro/system_date_time_format/tree/main/example_with_tests)
-which is a modification of
-basic [example](https://github.com/Nikoro/system_date_time_format/tree/main/example)  
-with mocks thanks to [mocktail](https://pub.dev/packages/mocktail).
+Mocktail stubs instance members. To test code that reads a static format getter, pass the consuming widget a value or a reader owned by your app. In `example_with_tests`, the production `DeviceFormats.time` getter calls `SystemDateTimeFormat.timePattern`. A widget test supplies a mock instance:
+
+```dart
+final formats = MockDeviceFormats();
+when(() => formats.time).thenReturn('HH:mm');
+await tester.pumpWidget(App(formats: formats));
+expect(find.text('HH:mm'), findsOneWidget);
+```
+
+The example also tests how the app displays unavailable date styles. [App adapter](example_with_tests/lib/device_formats.dart) · [Widget tests](example_with_tests/test/app_test.dart)
